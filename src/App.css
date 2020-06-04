@@ -1,0 +1,159 @@
+:root {
+    --mainTransition: all 0.3s linear;
+    --mainWhite: #fff;
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --mainRed: #cf3339;
+    --mainDarkRed: #99262b;
+    --mainDark: #3c3f41;
+    --mainTitle: #464646;
+    --darkGrey: #cfcfcf;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 3px;
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.react-player {
+    display: block;
+}
+.video-description {
+    width: 75%;
+}
+.authentication__header {
+    color: white;
+    text-align: center;
+}
+
+.authentication {
+    width: 90%;
+    padding: 4rem;
+    max-width: 25rem;
+    margin: 7rem auto;
+    text-align: center;
+}
+
+.authentication form {
+    margin-bottom: 1rem;
+}
+.auth-action {
+    margin-top: 1rem;
+}
+.auth-forgot {
+    padding: 9px;
+}
+.auth-forgot-back {
+    margin-top: 2rem;
+}
+.form-control-input {
+    width: 100%;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.section-title h4 {
+    font-size: 2.5rem;
+    text-align: left;
+    font-weight: 400;
+    color: var(--mainTitle);
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+.section-title div {
+    width: auto;
+    height: 2px;
+    margin: 0 auto 2rem auto;
+    background: var(--mainRed);
+}
+.first-input {
+    margin-bottom: 2.5rem;
+}
+.auth-input {
+    width: 100%;
+}
+.input-error {
+    margin-bottom: 1rem;
+}
+.button {
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--mainRed);
+    background: var(--mainRed);
+    color: var(--mainWhite);
+    cursor: pointer;
+    margin-top: 2rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:hover,
+.button:active {
+    background: var(--mainDarkRed);
+    border-color: var(--mainDarkRed);
+}
+
+.button--inverse {
+    background: transparent;
+    color: var(--mainRed);
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+    color: var(--mainWhite);
+    background: var(--mainRed);
+}
+
+.button--danger {
+    background: #830000;
+    border-color: #830000;
+}
+
+.button--danger:hover,
+.button--danger:active {
+    background: var(--mainRed);
+    border-color: var(--mainRed);
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+    background: var(--mainGrey);
+    color: var(--darkGrey);
+    border-color: var(--mainGrey);
+    cursor: not-allowed;
+}
+
+.button--small {
+    font-size: 0.8rem;
+}
+
+.button--big {
+    font-size: 1.5rem;
+}
+.fab-btn {
+    position: fixed !important;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--mainRed) !important;
+    color: var(--mainWhite) !important;
+}
+.fab-btn:hover {
+    background-color: var(--mainDarkRed) !important;
+}
+
+@media screen and (max-width: 959px) {
+    .video-description {
+        width: 100%;
+    }
+}

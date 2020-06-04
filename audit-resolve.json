@@ -1,0 +1,11 @@
+{
+  "decisions": {
+    "1486|react-scripts>webpack-dev-server>http-proxy-middleware>http-proxy": {
+      "decision": "ignore",
+      "madeAt": 1589635201793,
+      "expiresAt": 1592227164853
+    }
+  },
+  "rules": {},
+  "version": 1
+}

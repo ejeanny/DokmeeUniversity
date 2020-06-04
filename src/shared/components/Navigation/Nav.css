@@ -1,0 +1,10 @@
+.nav-logo {
+    height: 45px;
+    padding-top: 15px;
+    padding-bottom: 7.5px;
+}
+
+.nav-button a {
+    text-decoration: none;
+    color: #f7f7f7;
+}

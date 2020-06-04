@@ -1,0 +1,13 @@
+.chartSelect {
+    overflow: hidden;
+    float: right;
+    width: 100%;
+}
+.clear {
+    float: left;
+    margin: 0;
+    display: block;
+}
+.test {
+    min-height: 572;
+}
