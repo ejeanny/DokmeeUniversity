@@ -11,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -88,7 +89,6 @@ export default function PermanentDrawerRight(props) {
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    console.log(props);
 
     return (
         <div className={classes.drawerRoot}>
@@ -127,7 +127,11 @@ export default function PermanentDrawerRight(props) {
                                         to={`/dokmee-univeristy/${props.soft}/${props.slug}/${v.id}`}>
                                         <ListItem button>
                                             <ListItemIcon>
-                                                <PlayCircleFilledWhiteOutlinedIcon />
+                                                {v.type === "video" ? (
+                                                    <PlayCircleFilledWhiteOutlinedIcon />
+                                                ) : (
+                                                    <FileCopyOutlinedIcon />
+                                                )}
                                             </ListItemIcon>
                                             <ListItemText primary={v.slug} />
                                         </ListItem>

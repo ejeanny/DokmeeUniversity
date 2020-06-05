@@ -14,6 +14,8 @@ import DokmeeCapture from "./Software/pages/DokmeeCapture/DokmeeCapture";
 import DokmeeCaptureCourse from "./Software/pages/DokmeeCapture/DokmeeCaptureCourse";
 import DokmeeCaptureVideo from "./Software/pages/DokmeeCapture/DokmeeCaptureSingleVideo";
 import DokmeeEcm from "./Software/pages/DokmeeECM/DokmeeEcm";
+import DokmeeECMCourse from "./Software/pages/DokmeeECM/DokmeeECMCourse";
+import DokmeeECMSingleVideo from "./Software/pages/DokmeeECM/DokmeeECMSingleVideo";
 import DokmeeCourse from "./Software/pages/Courses/Course";
 import DokmeeAddCourse from "./Software/pages/Courses/AddCourse";
 import DokmeeUniversityTest from "./Software/pages/Test/DokmeeUniversityTest";
@@ -167,10 +169,10 @@ function App() {
                 </Route>
 
                 <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
-                    <DokmeeEcm />
+                    <DokmeeECMSingleVideo />
                 </Route>
                 <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
-                    <DokmeeEcm />
+                    <DokmeeECMCourse />
                 </Route>
                 <Redirect to='/'></Redirect>
             </Switch>

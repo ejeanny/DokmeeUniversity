@@ -91,7 +91,7 @@ export default function SideDrawer(props) {
                             <ListItemText primary='Dokmee Capture' />
                         </ListItem>
                     </Link>
-                    {/* <Link to='/dokmee-univeristy/dokmee-ecm'>
+                    <Link to='/dokmee-univeristy/dokmee-ecm'>
                         <ListItem button>
                             <ListItemIcon>
                                 <MailIcon className={props.classes.offWhite} />
@@ -108,15 +108,15 @@ export default function SideDrawer(props) {
                             </ListItemIcon>
                             <ListItemText primary='Courses' />
                         </ListItem>
-                    </Link> */}
+                    </Link>
                     {/* <Link to='/dokmee-univeristy/dokmee-form'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <InboxIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee Form' />
-                        </ListItem>
-                    </Link> */}
+                                        <ListItem button>
+                                            <ListItemIcon>
+                                                <InboxIcon className={props.classes.offWhite} />
+                                            </ListItemIcon>
+                                            <ListItemText primary='Dokmee Form' />
+                                        </ListItem>
+                                    </Link> */}
                 </List>
             </Drawer>
         );
@@ -192,29 +192,29 @@ export default function SideDrawer(props) {
                         </ListItem>
                     </Link>
                     {/* <Link to='/dokmee-univeristy/dokmee-ecm'>
-                        <ListItem button onClick={props.handleDrawerClose}>
-                            <ListItemIcon>
-                                <MailIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee ECM' />
-                        </ListItem>
-                    </Link>
-                    <Link to='/dokmee-univeristy/course'>
-                        <ListItem button onClick={props.handleDrawerClose}>
-                            <ListItemIcon>
-                                <MailIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee ECM' />
-                        </ListItem>
-                    </Link> */}
+                                        <ListItem button onClick={props.handleDrawerClose}>
+                                            <ListItemIcon>
+                                                <MailIcon className={props.classes.offWhite} />
+                                            </ListItemIcon>
+                                            <ListItemText primary='Dokmee ECM' />
+                                        </ListItem>
+                                    </Link>
+                                    <Link to='/dokmee-univeristy/course'>
+                                        <ListItem button onClick={props.handleDrawerClose}>
+                                            <ListItemIcon>
+                                                <MailIcon className={props.classes.offWhite} />
+                                            </ListItemIcon>
+                                            <ListItemText primary='Dokmee ECM' />
+                                        </ListItem>
+                                    </Link> */}
                     {/* <Link to='/dokmee-univeristy/dokmee-form'>
-                        <ListItem button onClick={props.handleDrawerClose}>
-                            <ListItemIcon>
-                                <InboxIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee Form' />
-                        </ListItem>
-                    </Link> */}
+                                        <ListItem button onClick={props.handleDrawerClose}>
+                                            <ListItemIcon>
+                                                <InboxIcon className={props.classes.offWhite} />
+                                            </ListItemIcon>
+                                            <ListItemText primary='Dokmee Form' />
+                                        </ListItem>
+                                    </Link> */}
                 </List>
             </Drawer>
         );

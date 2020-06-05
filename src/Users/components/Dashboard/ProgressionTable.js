@@ -41,7 +41,6 @@ function Row(props) {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
-    console.log(row);
     return (
         <React.Fragment>
             <TableRow className={classes.root}>

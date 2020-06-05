@@ -333,7 +333,7 @@ export default function NavTabs(props) {
             {!props.matches && (
                 <TabPanel value={value} index={3}>
                     <List>
-                        {props.information.video.map((v, index) => (
+                        {props.information.content.map((v, index) => (
                             <ExpansionPanel
                                 square
                                 expanded={
