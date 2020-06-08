@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Paper from "@material-ui/core/Paper";
 import {
     Chart,
     PieSeries,
@@ -10,16 +9,12 @@ import {
     Legend,
     Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
-import { scaleBand } from "@devexpress/dx-chart-core";
+
 import { EventTracker, HoverState } from "@devexpress/dx-react-chart";
-import { ValueScale, ArgumentScale, Stack } from "@devexpress/dx-react-chart";
+import { ValueScale, Stack } from "@devexpress/dx-react-chart";
 import { Animation } from "@devexpress/dx-react-chart";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import {
-    createMuiTheme,
-    ThemeProvider,
-    useTheme,
-} from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 
 const Label = symbol => props => {
     const { text } = props;
@@ -53,7 +48,6 @@ export default function ChartComponent(props) {
                     <Tooltip />
                 </Chart>
             );
-            break;
         case "bar":
             return (
                 <Chart data={props.data}>
@@ -99,7 +93,6 @@ export default function ChartComponent(props) {
                     <Tooltip />
                 </Chart>
             );
-            break;
         case "line":
             break;
         case "area":

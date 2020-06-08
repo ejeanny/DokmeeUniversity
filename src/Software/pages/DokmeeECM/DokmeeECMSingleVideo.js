@@ -376,7 +376,7 @@ export default function DokmeeCaptureSingleVideo() {
         <CourseVideoComponent
             videoId={videoId}
             matches={matches}
-            soft='capture'
+            // soft='capture'
             course={course}
             slug={slug}
             soft='dokmee-ecm'

@@ -40,10 +40,12 @@ export default function CourseVideoComponent(props) {
                             id='containerElement'
                             style={{
                                 position: "relative",
-                                height: "700px",
-                                width: "80%",
+                                width: props.matches ? "79.1%" : "100%",
+                                height: props.matches ? "700px" : "400px",
                                 overflow: "scroll",
-                                padding: "24px",
+                                padding: props.matches
+                                    ? "24px 200px"
+                                    : "24px 50px",
                             }}>
                             <ReactMarkdown
                                 source={markdownValue[0]}

@@ -158,5 +158,6 @@ a {
 @media screen and (max-width: 959px) {
     .video-description {
         width: 100%;
+        margin: 0;
     }
 }

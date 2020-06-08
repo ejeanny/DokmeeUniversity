@@ -117,6 +117,11 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.paper,
         width: "80%",
     },
+    rootMobile: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+        width: "100%",
+    },
     bar: {
         backgroundColor: "#323436",
         color: "#fff",
@@ -161,7 +166,8 @@ export default function NavTabs(props) {
         setValue(newValue);
     };
     return (
-        <div className={classes.root}>
+        <div
+            className={`${!props.matches ? classes.rootMobile : classes.root}`}>
             <AppBar position='static' className={classes.bar}>
                 <Tabs
                     variant='fullWidth'

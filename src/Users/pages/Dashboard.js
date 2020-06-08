@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
 import DashBoard from "../components/Dashboard/dashboardChart";
-import CardComponent from "../../shared/components/UiElements/CardComponent";
+// import CardComponent from "../../shared/components/UiElements/CardComponent";
 import Select from "../../shared/components/UiElements/SelectComponents";
 import ProgressionTable from "../components/Dashboard/ProgressionTable";
 import "./Dashboard.css";

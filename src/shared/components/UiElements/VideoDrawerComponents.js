@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Drawer from "@material-ui/core/Drawer";

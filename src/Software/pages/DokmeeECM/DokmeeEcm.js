@@ -1,10 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import CourseContentComponent from "../../components/CourseContentComponent";
 import CourseComponent from "../../components/CourseComponent";
-import CourseVideoComponent from "../../components/CourseVideoComponent";
 
 const DUMMY_VIDEO = [
     {

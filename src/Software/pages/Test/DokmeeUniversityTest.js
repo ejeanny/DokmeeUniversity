@@ -1,10 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useParams } from "react-router-dom";
-import TestComponent from "../../components/TestComponents";
-import { Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import Quiz from "react-quiz-component";
 import Quiz from "../../components/Quizz/Quiz";
 const DUMMY_TEST = [
     {
