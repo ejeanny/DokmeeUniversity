@@ -7,7 +7,7 @@ export const defaultLocale = {
     resultFilterIncorrect: "Incorrect",
     nextQuestionBtn: "Next",
     resultPageHeaderText:
-        "You have completed the quiz. You got <correctIndexLength> out of <questionLength> questions.",
+        "You have completed the test. You got <correctIndexLength> out of <questionLength> questions.",
     resultPagePoint: "You scored <correctPoints> out of <totalPoints>.",
     singleSelectionTagText: "Single Selection",
     multipleSelectionTagText: "Multiple Selection",

@@ -63,7 +63,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
     },
     margin: {
-        margin: theme.spacing(10),
+        display: "flex",
+        margin: "2rem auto",
     },
     drawer: {
         width: "20%",
@@ -102,13 +103,14 @@ export default function PermanentDrawerRight(props) {
                 anchor='right'>
                 <div className={classes.toolbar} />
                 <Divider />
-                <List>
+                <List className='no-padding-top'>
                     {props.videoName.map((v, index) => (
                         <ExpansionPanel
                             square
                             expanded={
                                 expanded === `panel${parseInt(index) + 1}`
                             }
+                            key={index}
                             onChange={handleChange(
                                 `panel${parseInt(index) + 1}`
                             )}>

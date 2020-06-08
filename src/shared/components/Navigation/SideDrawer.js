@@ -58,66 +58,73 @@ export default function SideDrawer(props) {
                     </List>
                 </Link>
                 <Divider className={props.classes.dividerOffWhite} />
-                <List className={`${props.classes.offWhite} nav-button`}>
-                    <Link to='/news'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <AnnouncementOutlinedIcon
-                                    className={props.classes.offWhite}
-                                />
-                            </ListItemIcon>
-                            <ListItemText primary='Team news' />
-                        </ListItem>
-                    </Link>
-                    <Link to='/features'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <NewReleasesOutlinedIcon
-                                    className={props.classes.offWhite}
-                                />
-                            </ListItemIcon>
-                            <ListItemText primary='New Features' />
-                        </ListItem>
-                    </Link>
-                </List>
-                {/* !TODO Add right control  */}
-                <Divider className={props.classes.dividerOffWhite} />
-                <List className={`${props.classes.offWhite} nav-button`}>
-                    <Link to='/dokmee-univeristy/dokmee-capture'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <InboxIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee Capture' />
-                        </ListItem>
-                    </Link>
-                    <Link to='/dokmee-univeristy/dokmee-ecm'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <MailIcon className={props.classes.offWhite} />
-                            </ListItemIcon>
-                            <ListItemText primary='Dokmee ECM' />
-                        </ListItem>
-                    </Link>
-                    <Link to='/dokmee-univeristy/courses'>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <LibraryBooksOutlinedIcon
-                                    className={props.classes.offWhite}
-                                />
-                            </ListItemIcon>
-                            <ListItemText primary='Courses' />
-                        </ListItem>
-                    </Link>
-                    {/* <Link to='/dokmee-univeristy/dokmee-form'>
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                <InboxIcon className={props.classes.offWhite} />
-                                            </ListItemIcon>
-                                            <ListItemText primary='Dokmee Form' />
-                                        </ListItem>
-                                    </Link> */}
-                </List>
+                {!props.isAdmin ? (
+                    <>
+                        <List
+                            className={`${props.classes.offWhite} nav-button`}>
+                            <Link to='/news'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <AnnouncementOutlinedIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Team news' />
+                                </ListItem>
+                            </Link>
+                            <Link to='/features'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <NewReleasesOutlinedIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='New Features' />
+                                </ListItem>
+                            </Link>
+                        </List>
+                        <Divider className={props.classes.dividerOffWhite} />
+                        <List
+                            className={`${props.classes.offWhite} nav-button`}>
+                            <Link to='/dokmee-univeristy/dokmee-capture'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <InboxIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Dokmee Capture' />
+                                </ListItem>
+                            </Link>
+                            <Link to='/dokmee-univeristy/dokmee-ecm'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <MailIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Dokmee ECM' />
+                                </ListItem>
+                            </Link>
+                        </List>
+                    </>
+                ) : (
+                    <>
+                        <List
+                            className={`${props.classes.offWhite} nav-button`}>
+                            <Link to='/admin/courses'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <LibraryBooksOutlinedIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Courses' />
+                                </ListItem>
+                            </Link>
+                        </List>
+                    </>
+                )}
             </Drawer>
         );
     } else {
@@ -191,15 +198,15 @@ export default function SideDrawer(props) {
                             <ListItemText primary='Dokmee Capture' />
                         </ListItem>
                     </Link>
-                    {/* <Link to='/dokmee-univeristy/dokmee-ecm'>
-                                        <ListItem button onClick={props.handleDrawerClose}>
-                                            <ListItemIcon>
-                                                <MailIcon className={props.classes.offWhite} />
-                                            </ListItemIcon>
-                                            <ListItemText primary='Dokmee ECM' />
-                                        </ListItem>
-                                    </Link>
-                                    <Link to='/dokmee-univeristy/course'>
+                    <Link to='/dokmee-univeristy/dokmee-ecm'>
+                        <ListItem button onClick={props.handleDrawerClose}>
+                            <ListItemIcon>
+                                <MailIcon className={props.classes.offWhite} />
+                            </ListItemIcon>
+                            <ListItemText primary='Dokmee ECM' />
+                        </ListItem>
+                    </Link>
+                    {/*<Link to='/dokmee-univeristy/course'>
                                         <ListItem button onClick={props.handleDrawerClose}>
                                             <ListItemIcon>
                                                 <MailIcon className={props.classes.offWhite} />

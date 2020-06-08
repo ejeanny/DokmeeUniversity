@@ -19,6 +19,8 @@ export default function MiniDrawer(props) {
                     <ToolBarContent
                         classes={props.classes}
                         handleDrawerOpen={props.handleDrawerOpen}
+                        isAdmin={props.isAdmin}
+                        handleAdminMode={props.handleAdminMode}
                     />
                 </Toolbar>
             </AppBar>
@@ -26,6 +28,7 @@ export default function MiniDrawer(props) {
                 open={props.open}
                 handleDrawerClose={props.handleDrawerClose}
                 classes={props.classes}
+                isAdmin={props.isAdmin}
             />
         </>
     );

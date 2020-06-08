@@ -150,7 +150,6 @@ class Quiz extends Component {
                     <div>
                         <h2>{quiz.quizTitle}</h2>
                         <div>
-                            {" "}
                             {appLocale.landingHeaderText.replace(
                                 "<questionLength>",
                                 quiz.questions.length
@@ -170,7 +169,6 @@ class Quiz extends Component {
                         </div>
                     </div>
                 )}
-
                 {this.state.start && (
                     <Core
                         questions={questions}

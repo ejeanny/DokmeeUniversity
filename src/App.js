@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: "nowrap",
-        backgroundColor: "#323436",
+        backgroundColor: "#CF3339",
     },
     drawerOpen: {
         width: drawerWidth,
@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
-        backgroundColor: "#323436",
+        backgroundColor: "#CF3339",
     },
     drawerClose: {
         transition: theme.transitions.create("width", {
@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up("sm")]: {
             width: theme.spacing(9) + 1,
         },
-        backgroundColor: "#323436",
+        backgroundColor: "#CF3339",
     },
     toolbar: {
         display: "flex",
@@ -103,9 +103,13 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        paddingBottom: "0px",
     },
     offWhite: {
         color: "#f7f7f7",
+        fontSize: "2rem", // textDecoration: none,
+    },
+    sideIcon: {
         // textDecoration: none,
     },
     dividerOffWhite: {
@@ -116,6 +120,7 @@ const useStyles = makeStyles(theme => ({
 function App() {
     const [open, setOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdminMode, setAdminMode] = useState(false);
     // const [userId, setUserId] = useState(false);
     const login = useCallback(uid => {
         setIsLoggedIn(true);
@@ -131,52 +136,71 @@ function App() {
     const handleDrawerClose = event => {
         setOpen(false);
     };
+    const handleAdminMode = event => {
+        setAdminMode(!isAdminMode);
+    };
     const classes = useStyles();
     let routes;
     if (isLoggedIn) {
-        routes = (
-            <Switch>
-                <Route path='/' exact>
-                    <Dashboard />
-                </Route>
-                <Route path='/features' exact>
-                    <SoftNews />
-                </Route>
+        if (isAdminMode) {
+            routes = (
+                <Switch>
+                    <Route path='/admin' exact>
+                        <Dashboard />
+                    </Route>
+                    <Route path='/admin/courses/add' exact>
+                        <DokmeeAddCourse />
+                    </Route>
+                    <Route path='/admin/courses/edit/:cid'>
+                        <DokmeeAddCourse />
+                    </Route>
+                    <Redirect to='/admin'></Redirect>
+                </Switch>
+            );
+        } else
+            routes = (
+                <Switch>
+                    <Route path='/' exact>
+                        <Dashboard />
+                    </Route>
+                    <Route path='/features' exact>
+                        <SoftNews />
+                    </Route>
 
-                <Route path='/dokmee-univeristy/dokmee-capture' exact>
-                    <DokmeeCapture />
-                </Route>
-                <Route path='/dokmee-university/test/:testId'>
-                    <DokmeeUniversityTest />
-                </Route>
-                <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug/:videoId'>
-                    <DokmeeCaptureVideo />
-                </Route>
-                <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
-                    <DokmeeCaptureCourse />
-                </Route>
-                <Route path='/dokmee-univeristy/dokmee-ecm' exact>
-                    <DokmeeEcm />
-                </Route>
-                <Route path='/dokmee-univeristy/courses' exact>
-                    <DokmeeCourse />
-                </Route>
-                <Route path='/dokmee-univeristy/courses/add' exact>
-                    <DokmeeAddCourse />
-                </Route>
-                <Route path='/dokmee-univeristy/courses/edit/:cid'>
-                    <DokmeeAddCourse />
-                </Route>
+                    <Route path='/dokmee-univeristy/dokmee-capture' exact>
+                        <DokmeeCapture />
+                    </Route>
+                    <Route path='/dokmee-university/test/:testId'>
+                        <DokmeeUniversityTest />
+                    </Route>
+                    <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug/:videoId'>
+                        <DokmeeCaptureVideo />
+                    </Route>
+                    <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
+                        <DokmeeCaptureCourse />
+                    </Route>
+                    <Route path='/dokmee-univeristy/dokmee-ecm' exact>
+                        <DokmeeEcm />
+                    </Route>
+                    <Route path='/dokmee-univeristy/courses' exact>
+                        <DokmeeCourse />
+                    </Route>
+                    <Route path='/dokmee-univeristy/courses/add' exact>
+                        <DokmeeAddCourse />
+                    </Route>
+                    <Route path='/dokmee-univeristy/courses/edit/:cid'>
+                        <DokmeeAddCourse />
+                    </Route>
 
-                <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
-                    <DokmeeECMSingleVideo />
-                </Route>
-                <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
-                    <DokmeeECMCourse />
-                </Route>
-                <Redirect to='/'></Redirect>
-            </Switch>
-        );
+                    <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
+                        <DokmeeECMSingleVideo />
+                    </Route>
+                    <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
+                        <DokmeeECMCourse />
+                    </Route>
+                    <Redirect to='/'></Redirect>
+                </Switch>
+            );
     } else {
         routes = (
             <Switch>
@@ -206,6 +230,8 @@ function App() {
                             classes={classes}
                             handleDrawerOpen={handleDrawerOpen}
                             handleDrawerClose={handleDrawerClose}
+                            handleAdminMode={handleAdminMode}
+                            isAdmin={isAdminMode}
                             open={open}></NavBar>
                     )}
 

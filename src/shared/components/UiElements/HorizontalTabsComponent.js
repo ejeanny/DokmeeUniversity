@@ -115,9 +115,12 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        width: "80%",
     },
     bar: {
         backgroundColor: "#323436",
+        color: "#fff",
+        boxShadow: "none",
     },
     expand: {
         transform: "rotate(0deg)",

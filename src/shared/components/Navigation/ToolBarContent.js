@@ -2,16 +2,14 @@ import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-
+import Button from "@material-ui/core/Button";
 import logo from "../../../images/logo.png";
 import "./Nav.css";
 import { Link } from "react-router-dom";
@@ -129,14 +127,11 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}>
-            <MenuItem>
-                <IconButton aria-label='show 4 new mails' color='inherit'>
-                    <Badge badgeContent={4} color='secondary'>
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
+            {/* <MenuItem>
+                <Button onClick={props.handleAdminMode}>
+                    {props.isAdmin ? "Student" : "Admin"}
+                </Button>
+            </MenuItem> */}
             <MenuItem>
                 <IconButton
                     aria-label='show 11 new notifications'
@@ -176,6 +171,9 @@ export default function ToolBarContent(props) {
             </Link>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+                <Button onClick={props.handleAdminMode} className='nav-button'>
+                    {props.isAdmin ? "Student" : "Admin"}
+                </Button>
                 <IconButton
                     aria-label='show 17 new notifications'
                     color='inherit'

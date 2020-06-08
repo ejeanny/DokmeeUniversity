@@ -21,9 +21,10 @@ a {
 
 .react-player {
     display: block;
+    margin: -24px -24px 0 -24px;
 }
 .video-description {
-    width: 75%;
+    margin: -24px -24px 0 -24px;
 }
 .authentication__header {
     color: white;
@@ -151,7 +152,9 @@ a {
 .fab-btn:hover {
     background-color: var(--mainDarkRed) !important;
 }
-
+.no-padding-top {
+    padding-top: 0px !important;
+}
 @media screen and (max-width: 959px) {
     .video-description {
         width: 100%;

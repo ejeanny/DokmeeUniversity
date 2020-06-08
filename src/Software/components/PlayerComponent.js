@@ -9,8 +9,8 @@ export default function PlayerComponent(props) {
     return (
         <ReactPlayer
             url={`https://www.etiennejeanny.ovh//video/${props.soft}/${props.videoId}.mp4`}
-            width={props.matches ? "75%" : "100%"}
-            height={props.matches ? "75%" : "100%"}
+            width={props.matches ? "80%" : "100%"}
+            height={props.matches ? "80%" : "100%"}
             top='0'
             controls={true}
             onReady={handlePlayer}

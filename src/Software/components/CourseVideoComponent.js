@@ -21,7 +21,6 @@ export default function CourseVideoComponent(props) {
         getText();
     }, []);
     if (markdown) {
-        console.log(Object.values(markdown));
         markdownValue = Object.values(markdown);
     }
 
@@ -41,15 +40,15 @@ export default function CourseVideoComponent(props) {
                             id='containerElement'
                             style={{
                                 position: "relative",
-                                height: "75%",
-                                width: "75%",
+                                height: "700px",
+                                width: "80%",
                                 overflow: "scroll",
-                                marginBottom: "100px",
+                                padding: "24px",
                             }}>
                             <ReactMarkdown
                                 source={markdownValue[0]}
                                 escapeHtml={false}
-                                width='75%'
+                                width='80%'
                             />
                         </Element>
                     )
@@ -64,9 +63,7 @@ export default function CourseVideoComponent(props) {
                     testId={props.course.testId}
                 />
             )}
-            <Paper
-                className='video-description'
-                elevation={props.elevation || 3}>
+            <Paper className='video-description'>
                 <HorizontalTabsComponent
                     matches={props.matches}
                     information={props.course}
