@@ -56,7 +56,7 @@ class Quiz extends Component {
                 console.error("Field 'questionType' is required.");
                 return false;
             } else {
-                if (questionType != "text" && questionType != "photo") {
+                if (questionType !== "text" && questionType !== "photo") {
                     console.error(
                         "The value of 'questionType' is either 'text' or 'photo'."
                     );
@@ -88,7 +88,7 @@ class Quiz extends Component {
             }
 
             if (
-                answerSelectionType == "single" &&
+                answerSelectionType === "single" &&
                 !(
                     typeof answerSelectionType === "string" ||
                     answerSelectionType instanceof String
@@ -101,7 +101,7 @@ class Quiz extends Component {
             }
 
             if (
-                answerSelectionType == "multiple" &&
+                answerSelectionType === "multiple" &&
                 !Array.isArray(correctAnswer)
             ) {
                 console.error(

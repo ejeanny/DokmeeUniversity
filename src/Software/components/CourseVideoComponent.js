@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import PlayerComponents from "./PlayerComponent";
-import { Element, animateScroll as scroll } from "react-scroll";
+import { Element } from "react-scroll";
 import HorizontalTabsComponent from "../../shared/components/UiElements/HorizontalTabsComponent";
 import DrawerComponent from "../../shared/components/UiElements/VideoDrawerComponents";
 import { Paper } from "@material-ui/core";
+import "github-markdown-css";
 import ReactMarkdown from "react-markdown";
+import Stackedit from "stackedit-js";
 import AppMarkdown from "../../Markdown File.md";
 
 export default function CourseVideoComponent(props) {
     let markdownValue;
     const [markdown, setMarkdown] = useState();
+    const stackedit = new Stackedit();
     const getText = async () => {
         try {
             fetch(AppMarkdown)
@@ -49,8 +52,7 @@ export default function CourseVideoComponent(props) {
                             }}>
                             <ReactMarkdown
                                 source={markdownValue[0]}
-                                escapeHtml={false}
-                                width='80%'
+                                className='markdown-body lecture'
                             />
                         </Element>
                     )
