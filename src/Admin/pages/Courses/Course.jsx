@@ -1,8 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import CourseComponent from "../../components/CourseComponent";
-import { Fab, Tooltip } from "@material-ui/core";
+import React, { useState, useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Input from "@material-ui/core/Input";
+import CourseComponent from "../../../Software/components/CourseComponent";
+import { Fab, Tooltip, Box } from "@material-ui/core";
+import {
+    VALIDATOR_EMAIL,
+    VALIDATOR_MINLENGTH,
+    VALIDATOR_REQUIRE,
+} from "../../../shared/util/validators";
+import ButtonComponent from "../../../shared/components/FormElements/Button";
+import InputComponent from "../../../shared/components/FormElements/Input";
+import { useForm } from "../../../shared/hook/form-hooks";
+import { useHttpClient } from "../../../shared/hook/http-hooks";
 import AddIcon from "@material-ui/icons/Add";
+import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 const DUMMY_VIDEO = [
     {
         id: 1,
@@ -114,10 +134,64 @@ const DUMMY_VIDEO = [
         mainImgUrl: "https://www.etiennejeanny.ovh/uploads/images/mainImg.png",
     },
 ];
+function getModalStyle() {
+    const top = 50;
+    const left = 50;
 
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+const useStyles = makeStyles(theme => ({
+    container: {
+        display: "flex",
+        flexWrap: "wrap",
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    darkButton: {
+        backgroundColor: "#323436",
+    },
+}));
 export default function Course() {
+    const [open, setOpen] = useState(false);
+    const classes = useStyles();
+    const [modalStyle] = useState(getModalStyle);
+    const { isLoading, error, sendRequest, clearError } = useHttpClient(); //initialize the http hooks for this components
+    const [software, setSoftware] = useState("");
+    const [formState, inputHandler, setFormData] = useForm(
+        {
+            name: {
+                value: "",
+                isValid: false,
+            },
+        },
+        false
+    ); // check if the input are input are Valid
+    const handleChange = event => {
+        setSoftware(event.target.value || "");
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const creationtionSubmitHandler = event => {
+        event.preventDefault();
+        console.log("Created");
+
+        setOpen(false);
+    };
+
     return (
-        <div>
+        <>
             <CourseComponent
                 spacing={3}
                 video={DUMMY_VIDEO}
@@ -125,13 +199,60 @@ export default function Course() {
                 isCourse={true}
                 action={["Edit", "Delete"]}
             />
-            <Link to='/dokmee-univeristy/courses/add'>
-                <Tooltip title='Add'>
-                    <Fab aria-label='add' className='fab-btn'>
-                        <AddIcon />
-                    </Fab>
-                </Tooltip>
-            </Link>
-        </div>
+            <Tooltip title='Add'>
+                <Fab aria-label='add' className='fab-btn' onClick={handleOpen}>
+                    <AddIcon />
+                </Fab>
+            </Tooltip>
+            <Dialog
+                disableBackdropClick
+                disableEscapeKeyDown
+                open={open}
+                onClose={handleClose}>
+                <DialogTitle>Fill the form</DialogTitle>
+                <DialogContent>
+                    <form className={classes.container}>
+                        <FormControl className={classes.formControl}>
+                            <InputComponent
+                                id='name'
+                                element='name'
+                                type='text'
+                                label='Name'
+                                subMainClasses='auth-input'
+                                validators={[VALIDATOR_MINLENGTH(6)]}
+                                onInput={inputHandler}
+                                errorText='At least 4 characters for the name'></InputComponent>
+                            <Select
+                                native
+                                value={software}
+                                onChange={handleChange}
+                                input={<Input id='demo-dialog-native' />}>
+                                <option aria-label='None' value='' />
+                                <option value={"Dokmee Capture"}>
+                                    Dokmee Capture
+                                </option>
+                                <option value={"Dokmee Ecm"}>Dokmee Ecm</option>
+                                <option value={"Dokmee Form"}>
+                                    Dokmee Form
+                                </option>
+                            </Select>
+                        </FormControl>
+                    </form>
+                </DialogContent>
+                <DialogActions>
+                    <ButtonComponent
+                        onClick={handleClose}
+                        className={classes.darkButton}>
+                        Cancel
+                    </ButtonComponent>
+                    <ButtonComponent
+                        type='submit'
+                        disabled={!formState.isValid}
+                        onClick={creationtionSubmitHandler}>
+                        Create
+                    </ButtonComponent>
+                </DialogActions>
+            </Dialog>
+        </>
     );
 }

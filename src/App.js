@@ -16,8 +16,8 @@ import DokmeeCaptureVideo from "./Software/pages/DokmeeCapture/DokmeeCaptureSing
 import DokmeeEcm from "./Software/pages/DokmeeECM/DokmeeEcm";
 import DokmeeECMCourse from "./Software/pages/DokmeeECM/DokmeeECMCourse";
 import DokmeeECMSingleVideo from "./Software/pages/DokmeeECM/DokmeeECMSingleVideo";
-import DokmeeCourse from "./Software/pages/Courses/Course";
-import DokmeeAddCourse from "./Software/pages/Courses/AddCourse";
+import DokmeeCourse from "./Admin/pages/Courses/Course.jsx";
+import DokmeeAddCourse from "./Admin/pages/Courses/AddCourse.jsx";
 import DokmeeUniversityTest from "./Software/pages/Test/DokmeeUniversityTest";
 import SoftNews from "./News/pages/SoftNews";
 import logo from "./images/logo.png";
@@ -147,6 +147,9 @@ function App() {
                 <Switch>
                     <Route path='/admin' exact>
                         <Dashboard />
+                    </Route>
+                    <Route path='/admin/courses' exact>
+                        <DokmeeCourse />
                     </Route>
                     <Route path='/admin/courses/add' exact>
                         <DokmeeAddCourse />

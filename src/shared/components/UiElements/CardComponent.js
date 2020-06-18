@@ -49,13 +49,12 @@ export default function MediaCard(props) {
                     </Button>
                 ) : (
                     <>
-                        <Link
-                            to={`/dokmee-univeristy/courses/edit/${props.id}`}>
+                        <Link to={`/admin/courses/edit/${props.id}`}>
                             <Button size='small' color='primary'>
                                 Edit
                             </Button>
                         </Link>
-                        <Link to={`/course/delete/${props.id}`}>
+                        <Link to={`/admin/course/delete/${props.id}`}>
                             <Button size='small' color='primary'>
                                 Delete
                             </Button>
