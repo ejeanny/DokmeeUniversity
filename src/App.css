@@ -127,6 +127,17 @@ a {
     border-color: var(--mainRed);
 }
 
+.button--dark {
+    background: #3c3f41;
+    border-color: #3c3f41;
+    color: var(--mainWhite);
+}
+
+.button--dark:hover,
+.button--dark:active {
+    background: #303234;
+    border-color: #303234;
+}
 .button:disabled,
 .button:hover:disabled,
 .button:active:disabled {

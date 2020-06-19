@@ -148,10 +148,14 @@ const useStyles = makeStyles(theme => ({
     container: {
         display: "flex",
         flexWrap: "wrap",
+        width: "100%",
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 120,
+        minWidth: 500,
+    },
+    select: {
+        marginTop: theme.spacing(2),
     },
     darkButton: {
         backgroundColor: "#323436",
@@ -226,6 +230,7 @@ export default function Course() {
                                 native
                                 value={software}
                                 onChange={handleChange}
+                                className={classes.select}
                                 input={<Input id='demo-dialog-native' />}>
                                 <option aria-label='None' value='' />
                                 <option value={"Dokmee Capture"}>
@@ -240,9 +245,7 @@ export default function Course() {
                     </form>
                 </DialogContent>
                 <DialogActions>
-                    <ButtonComponent
-                        onClick={handleClose}
-                        className={classes.darkButton}>
+                    <ButtonComponent onClick={handleClose} dark={true}>
                         Cancel
                     </ButtonComponent>
                     <ButtonComponent
