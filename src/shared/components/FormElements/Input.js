@@ -164,17 +164,32 @@ const InputComponent = props => {
             );
             break;
         default:
-            element = (
-                <TextField
-                    id={props.id}
-                    type={props.type}
-                    label={props.label}
-                    placeholder={props.placeholder}
-                    onChange={changeHandler}
-                    onBlur={touchHandler}
-                    value={inputState.value}
-                />
-            );
+            {
+                props.variant
+                    ? (element = (
+                          <TextField
+                              id={props.id}
+                              type={props.type}
+                              label={props.label}
+                              variant={props.variant}
+                              placeholder={props.placeholder}
+                              onChange={changeHandler}
+                              onBlur={touchHandler}
+                              value={inputState.value}
+                          />
+                      ))
+                    : (element = (
+                          <TextField
+                              id={props.id}
+                              type={props.type}
+                              label={props.label}
+                              placeholder={props.placeholder}
+                              onChange={changeHandler}
+                              onBlur={touchHandler}
+                              value={inputState.value}
+                          />
+                      ));
+            }
             break;
     }
 

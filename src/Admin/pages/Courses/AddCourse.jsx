@@ -1,9 +1,12 @@
 import React from "react";
+import VerticalTabs from "../../components/Courses/AddCourseVerticalTabs";
 
-export default function AddCourse() {
+export default function AddCourse(props) {
     return (
         <div>
-            <h1>Add a new course</h1>
+            <VerticalTabs
+                tabs={["General Information", "Curriculum", "Test"]}
+            />
         </div>
     );
 }

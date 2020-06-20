@@ -1,11 +1,10 @@
 import React from "react";
+import CourseGeneralInformation from "./CourseGeneralInformation";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import ExpensionpanelComponent from "./ExpensionPanelComponents";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -63,33 +62,17 @@ export default function VerticalTabs(props) {
                 onChange={handleChange}
                 aria-label='Vertical tabs example'
                 className={classes.tabs}>
-                <Tab label='Video One' {...a11yProps(0)} />
-                <Tab label='Video Two' {...a11yProps(1)} />
-                <Tab label='Video Three' {...a11yProps(2)} />
-                <Tab label='Video Four' {...a11yProps(3)} />
-                <Tab label='Video Five' {...a11yProps(4)} />
-                <Tab label='Video Six' {...a11yProps(5)} />
-                <Tab label='Video Seven' {...a11yProps(6)} />
+                <Tab label='General information' {...a11yProps(0)} />
+                <Tab label='Curriculum' {...a11yProps(1)} />
+                <Tab label='Course Test' {...a11yProps(2)} />
             </Tabs>
             <TabPanel value={value} index={0}>
-                {props.children}
+                <CourseGeneralInformation />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 {props.children}
             </TabPanel>
             <TabPanel value={value} index={2}>
-                {props.children}
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                {props.children}
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-                {props.children}
-            </TabPanel>
-            <TabPanel value={value} index={5}>
-                {props.children}
-            </TabPanel>
-            <TabPanel value={value} index={6}>
                 {props.children}
             </TabPanel>
         </div>
