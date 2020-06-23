@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
+import Curriculum from "./Curriculum.jsx";
+import QuizForm from "./Quizz/QuizForm";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -48,6 +50,11 @@ const useStyles = makeStyles(theme => ({
 export default function VerticalTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [result, setFormResult] = React.useState();
+
+    const setResult = values => {
+        setFormResult(JSON.stringify(values, null, 2));
+    };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -70,10 +77,10 @@ export default function VerticalTabs(props) {
                 <CourseGeneralInformation />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                {props.children}
+                <Curriculum />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                {props.children}
+                <QuizForm onSubmit={setResult} />
             </TabPanel>
         </div>
     );

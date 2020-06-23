@@ -13,7 +13,9 @@ import ButtonComponent from "../../../shared/components/FormElements/Button";
 import InputComponent from "../../../shared/components/FormElements/Input";
 import { useForm } from "../../../shared/hook/form-hooks";
 import { useHttpClient } from "../../../shared/hook/http-hooks";
+import InputLabel from "@material-ui/core/InputLabel";
 import AddIcon from "@material-ui/icons/Add";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -163,6 +165,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function Course() {
     const [open, setOpen] = useState(false);
+    const [age, setAge] = React.useState("");
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const { isLoading, error, sendRequest, clearError } = useHttpClient(); //initialize the http hooks for this components
@@ -226,8 +229,12 @@ export default function Course() {
                                 validators={[VALIDATOR_MINLENGTH(6)]}
                                 onInput={inputHandler}
                                 errorText='At least 4 characters for the name'></InputComponent>
+                            <InputLabel shrink id='select-label'>
+                                Software
+                            </InputLabel>
                             <Select
                                 native
+                                labelId='select-label'
                                 value={software}
                                 onChange={handleChange}
                                 className={classes.select}
@@ -241,6 +248,24 @@ export default function Course() {
                                     Dokmee Form
                                 </option>
                             </Select>
+                            <InputLabel id='demo-simple-select-helper-label'>
+                                Age
+                            </InputLabel>
+                            <Select
+                                labelId='demo-simple-select-helper-label'
+                                id='demo-simple-select-helper'
+                                value={age}
+                                onChange={handleChange}>
+                                <MenuItem value=''>
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                            <FormHelperText>
+                                Some important helper text
+                            </FormHelperText>
                         </FormControl>
                     </form>
                 </DialogContent>

@@ -9,15 +9,10 @@ import Title from "../../../shared/components/UiElements/Title";
 import ButtonComponent from "../../../shared/components/FormElements/Button";
 import { useForm } from "../../../shared/hook/form-hooks";
 import { useHttpClient } from "../../../shared/hook/http-hooks";
-import {
-    Paper,
-    Box,
-    Checkbox,
-    FormControlLabel,
-    Button,
-} from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Editor } from "react-draft-wysiwyg";
+
 export default function CourseGeneralInformation() {
     const [isLoginMode, setIsLoginMode] = useState(true);
     const { isLoading, error, sendRequest, clearError } = useHttpClient(); //initialize the http hooks for this components
