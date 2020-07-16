@@ -7,6 +7,7 @@ export default function Curriculum() {
 
     const setResult = values => {
         setFormResult(JSON.stringify(values, null, 2));
+        console.log(result);
     };
 
     return (
