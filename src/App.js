@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        backgroundColor: "#323436",
+        backgroundColor: "#00172B",
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -207,10 +207,13 @@ function App() {
     } else {
         routes = (
             <Switch>
+                <Route path='/' exact>
+                    <Dashboard />
+                </Route>
                 <Route path='/auth' exact>
                     <Auth />
                 </Route>
-                <Redirect to='/auth'></Redirect>
+                <Redirect to='/'></Redirect>
             </Switch>
         );
     }
@@ -223,30 +226,22 @@ function App() {
                 login: login,
                 logout: logout,
             }}>
-            <div
-                className={
-                    isLoggedIn ? `${classes.mainNav}` : `${classes.login}`
-                }>
+            <div className={classes.mainNav}>
                 <Router>
-                    {isLoggedIn && (
-                        <NavBar
-                            classes={classes}
-                            handleDrawerOpen={handleDrawerOpen}
-                            handleDrawerClose={handleDrawerClose}
-                            handleAdminMode={handleAdminMode}
-                            isAdmin={isAdminMode}
-                            open={open}></NavBar>
-                    )}
+                    <NavBar
+                        classes={classes}
+                        handleDrawerOpen={handleDrawerOpen}
+                        handleDrawerClose={handleDrawerClose}
+                        handleAdminMode={handleAdminMode}
+                        isAdmin={isAdminMode}
+                        isLoggedIn={isLoggedIn}
+                        open={open}></NavBar>
 
-                    <main
-                        className={isLoggedIn ? `${classes.content}` : "login"}>
-                        {isLoggedIn && <div className={classes.toolbar} />}
+                    <main className={classes.content}>
+                        <div className={classes.toolbar} />
                         <Switch>{routes}</Switch>
                     </main>
                 </Router>
-                {!isLoggedIn && (
-                    <img src={logo} alt='Dokmee' className={classes.logo}></img>
-                )}
             </div>
         </AuthContext.Provider>
     );

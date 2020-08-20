@@ -14,6 +14,11 @@ import logo from "../../../images/logo.png";
 import "./Nav.css";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
+    navBar: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+    },
     grow: {
         flexGrow: 1,
     },
@@ -112,8 +117,17 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMenuOpen}
             onClose={handleMenuClose}>
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            {props.isLoggedIn ? (
+                <>
+                    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+                </>
+            ) : (
+                <>
+                    <MenuItem onClick={handleMenuClose}>Log in</MenuItem>
+                </>
+            )}
         </Menu>
     );
 
@@ -156,56 +170,63 @@ export default function ToolBarContent(props) {
     );
     return (
         <>
-            <IconButton
-                color='inherit'
-                aria-label='open drawer'
-                onClick={props.handleDrawerOpen}
-                edge='start'
-                className={clsx(props.classes.menuButton, {
-                    [props.classes.hide]: props.open,
-                })}>
-                <MenuIcon />
-            </IconButton>
-            <Link to='/'>
-                <img src={logo} alt='Dokmee' className='nav-logo'></img>
-            </Link>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-                <Button onClick={props.handleAdminMode} className='nav-button'>
-                    {props.isAdmin ? "Student" : "Admin"}
-                </Button>
-                <IconButton
-                    aria-label='show 17 new notifications'
-                    color='inherit'
-                    className='nav-button'>
-                    <Link to='/notification'>
-                        <Badge badgeContent={17} color='secondary'>
-                            <NotificationsIcon />
-                        </Badge>
-                    </Link>
-                </IconButton>
-                <IconButton
-                    edge='end'
-                    aria-label='account of current user'
-                    aria-controls={menuId}
-                    aria-haspopup='true'
-                    onClick={handleProfileMenuOpen}
-                    color='inherit'>
-                    <AccountCircle />
-                </IconButton>
+            <div className={classes.navBar}>
+                {!props.matches && (
+                    <IconButton
+                        color='inherit'
+                        aria-label='open drawer'
+                        onClick={props.handleDrawerOpen}
+                        edge='start'
+                        className={clsx(props.classes.menuButton, {
+                            [props.classes.hide]: props.open,
+                        })}>
+                        <MenuIcon />
+                    </IconButton>
+                )}
+                <Link to='/'>
+                    <img src={logo} alt='Dokmee' className='nav-logo'></img>
+                    <span>Becomes a Dokmee Expert</span>
+                </Link>
+                <div className={classes.grow} />
+                <div className={classes.sectionDesktop}>
+                    <Button
+                        onClick={props.handleAdminMode}
+                        className='nav-button'>
+                        {props.isAdmin ? "Student" : "Admin"}
+                    </Button>
+                    <IconButton
+                        aria-label='show 17 new notifications'
+                        color='inherit'
+                        className='nav-button'>
+                        <Link to='/notification'>
+                            <Badge badgeContent={17} color='secondary'>
+                                <NotificationsIcon />
+                            </Badge>
+                        </Link>
+                    </IconButton>
+                    <IconButton
+                        edge='end'
+                        aria-label='account of current user'
+                        aria-controls={menuId}
+                        aria-haspopup='true'
+                        onClick={handleProfileMenuOpen}
+                        color='inherit'>
+                        <AccountCircle />
+                    </IconButton>
+                </div>
+                <div className={classes.sectionMobile}>
+                    <IconButton
+                        aria-label='show more'
+                        aria-controls={mobileMenuId}
+                        aria-haspopup='true'
+                        onClick={handleMobileMenuOpen}
+                        color='inherit'>
+                        <MoreIcon />
+                    </IconButton>
+                </div>
+                {renderMobileMenu}
+                {renderMenu}
             </div>
-            <div className={classes.sectionMobile}>
-                <IconButton
-                    aria-label='show more'
-                    aria-controls={mobileMenuId}
-                    aria-haspopup='true'
-                    onClick={handleMobileMenuOpen}
-                    color='inherit'>
-                    <MoreIcon />
-                </IconButton>
-            </div>
-            {renderMobileMenu}
-            {renderMenu}
         </>
     );
 }
