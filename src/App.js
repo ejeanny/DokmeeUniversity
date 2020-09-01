@@ -21,6 +21,7 @@ import DokmeeAddCourse from "./Admin/pages/Courses/AddCourse.jsx";
 import DokmeeUniversityTest from "./Software/pages/Test/DokmeeUniversityTest";
 import SoftNews from "./News/pages/SoftNews";
 import logo from "./images/logo.png";
+import logoLogin from "./images/logo-login.png";
 import "./App.css";
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
         left: "0",
         height: "100%",
         width: "100%",
-        backgroundColor: "#3C3F41",
+        backgroundColor: "#00172C",
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -50,7 +51,7 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        backgroundColor: "#323436",
+        backgroundColor: "#00172C",
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -171,7 +172,7 @@ function App() {
                     </Route>
 
                     <Route path='/dokmee-univeristy/dokmee-capture' exact>
-                        <DokmeeCapture />
+                        <DokmeeCaptureCourse />
                     </Route>
                     <Route path='/dokmee-university/test/:testId'>
                         <DokmeeUniversityTest />
@@ -183,7 +184,7 @@ function App() {
                         <DokmeeCaptureCourse />
                     </Route>
                     <Route path='/dokmee-univeristy/dokmee-ecm' exact>
-                        <DokmeeEcm />
+                        <DokmeeECMCourse />
                     </Route>
                     <Route path='/dokmee-univeristy/courses' exact>
                         <DokmeeCourse />
@@ -245,7 +246,10 @@ function App() {
                     </main>
                 </Router>
                 {!isLoggedIn && (
-                    <img src={logo} alt='Dokmee' className={classes.logo}></img>
+                    <img
+                        src={logoLogin}
+                        alt='Dokmee'
+                        className={classes.logo}></img>
                 )}
             </div>
         </AuthContext.Provider>

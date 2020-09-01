@@ -19,13 +19,17 @@ a {
     color: black;
 }
 
+.player {
+    width: 80%;
+}
 .react-player {
     display: block;
-    background-color: #fff;
-    margin: -24px -24px 0 -24px;
+
+    padding: 0 24px;
 }
 .video-description {
-    margin: -24px -24px 0 -24px;
+    margin: 24px;
+    padding: 24px;
 }
 .authentication__header {
     color: white;
@@ -172,8 +176,11 @@ a {
 }
 
 @media screen and (max-width: 959px) {
-    .video-description {
-        width: 100%;
+    .react-player {
         margin: 0;
+    }
+
+    .player {
+        width: 100%;
     }
 }

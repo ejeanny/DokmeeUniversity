@@ -9,11 +9,9 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import ExtensionRoundedIcon from "@material-ui/icons/ExtensionRounded";
+import KitchenRoundedIcon from "@material-ui/icons/KitchenRounded";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import NewReleasesOutlinedIcon from "@material-ui/icons/NewReleasesOutlined";
-import AnnouncementOutlinedIcon from "@material-ui/icons/AnnouncementOutlined";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import LibraryBooksOutlinedIcon from "@material-ui/icons/LibraryBooksOutlined";
@@ -60,7 +58,7 @@ export default function SideDrawer(props) {
                 <Divider className={props.classes.dividerOffWhite} />
                 {!props.isAdmin ? (
                     <>
-                        <List
+                        {/* <List
                             className={`${props.classes.offWhite} nav-button`}>
                             <Link to='/news'>
                                 <ListItem button>
@@ -83,13 +81,13 @@ export default function SideDrawer(props) {
                                 </ListItem>
                             </Link>
                         </List>
-                        <Divider className={props.classes.dividerOffWhite} />
+                        <Divider className={props.classes.dividerOffWhite} /> */}
                         <List
                             className={`${props.classes.offWhite} nav-button`}>
                             <Link to='/dokmee-univeristy/dokmee-capture'>
                                 <ListItem button>
                                     <ListItemIcon>
-                                        <InboxIcon
+                                        <ExtensionRoundedIcon
                                             className={props.classes.offWhite}
                                         />
                                     </ListItemIcon>
@@ -99,7 +97,7 @@ export default function SideDrawer(props) {
                             <Link to='/dokmee-univeristy/dokmee-ecm'>
                                 <ListItem button>
                                     <ListItemIcon>
-                                        <MailIcon
+                                        <KitchenRoundedIcon
                                             className={props.classes.offWhite}
                                         />
                                     </ListItemIcon>
@@ -164,36 +162,15 @@ export default function SideDrawer(props) {
                         </ListItem>
                     </List>
                 </Link>
-                <Divider className={props.classes.dividerOffWhite} />
-                <List className={`${props.classes.offWhite} nav-button`}>
-                    <Link to='/news'>
-                        <ListItem button onClick={props.handleDrawerClose}>
-                            <ListItemIcon>
-                                <AnnouncementOutlinedIcon
-                                    className={props.classes.offWhite}
-                                />
-                            </ListItemIcon>
-                            <ListItemText primary='Team news' />
-                        </ListItem>
-                    </Link>
-                    <Link to='/features'>
-                        <ListItem button onClick={props.handleDrawerClose}>
-                            <ListItemIcon>
-                                <NewReleasesOutlinedIcon
-                                    className={props.classes.offWhite}
-                                />
-                            </ListItemIcon>
-                            <ListItemText primary='New Features' />
-                        </ListItem>
-                    </Link>
-                </List>
                 {/* !//TODO Add right control  */}
                 <Divider className={props.classes.dividerOffWhite} />
                 <List className={`${props.classes.offWhite} nav-button`}>
                     <Link to='/dokmee-univeristy/dokmee-capture'>
                         <ListItem button onClick={props.handleDrawerClose}>
                             <ListItemIcon>
-                                <InboxIcon className={props.classes.offWhite} />
+                                <ExtensionRoundedIcon
+                                    className={props.classes.offWhite}
+                                />
                             </ListItemIcon>
                             <ListItemText primary='Dokmee Capture' />
                         </ListItem>
@@ -201,7 +178,9 @@ export default function SideDrawer(props) {
                     <Link to='/dokmee-univeristy/dokmee-ecm'>
                         <ListItem button onClick={props.handleDrawerClose}>
                             <ListItemIcon>
-                                <MailIcon className={props.classes.offWhite} />
+                                <KitchenRoundedIcon
+                                    className={props.classes.offWhite}
+                                />
                             </ListItemIcon>
                             <ListItemText primary='Dokmee ECM' />
                         </ListItem>

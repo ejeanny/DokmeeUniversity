@@ -67,11 +67,11 @@ const useStyles = makeStyles(theme => ({
         margin: "2rem auto",
     },
     drawer: {
-        width: "20%",
+        width: "18%",
         flexShrink: 0,
     },
     drawerPaper: {
-        width: "20%",
+        width: "18%",
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
@@ -84,12 +84,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function PermanentDrawerRight(props) {
     const classes = useStyles();
-
-    const [expanded, setExpanded] = React.useState("panel1");
-
-    const handleChange = panel => (event, newExpanded) => {
-        setExpanded(newExpanded ? panel : false);
-    };
 
     return (
         <div className={classes.drawerRoot}>
@@ -105,42 +99,21 @@ export default function PermanentDrawerRight(props) {
                 <Divider />
                 <List className='no-padding-top'>
                     {props.videoName.map((v, index) => (
-                        <ExpansionPanel
-                            square
-                            expanded={
-                                expanded === `panel${parseInt(index) + 1}`
-                            }
-                            key={index}
-                            onChange={handleChange(
-                                `panel${parseInt(index) + 1}`
-                            )}>
-                            <ExpansionPanelSummary
-                                aria-controls={` panel${
-                                    parseInt(index) + 1
-                                }d-content`}
-                                id={`panel${parseInt(index) + 1}d-header`}>
-                                <Typography>{v.sectionName}</Typography>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                {v.sectionVideo.map(v => (
-                                    <Link
-                                        key={v.id}
-                                        className='duLink'
-                                        to={`/dokmee-univeristy/${props.soft}/${props.slug}/${v.id}`}>
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                {v.type === "video" ? (
-                                                    <PlayCircleFilledWhiteOutlinedIcon />
-                                                ) : (
-                                                    <FileCopyOutlinedIcon />
-                                                )}
-                                            </ListItemIcon>
-                                            <ListItemText primary={v.slug} />
-                                        </ListItem>
-                                    </Link>
-                                ))}
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>
+                        <Link
+                            key={v.id}
+                            className='duLink'
+                            to={`/dokmee-univeristy/${props.soft}/${props.slug}/${v.id}`}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    {v.type === "video" ? (
+                                        <PlayCircleFilledWhiteOutlinedIcon />
+                                    ) : (
+                                        <FileCopyOutlinedIcon />
+                                    )}
+                                </ListItemIcon>
+                                <ListItemText primary={v.slug} />
+                            </ListItem>
+                        </Link>
                     ))}
                     {!props.watched ? (
                         <Tooltip
