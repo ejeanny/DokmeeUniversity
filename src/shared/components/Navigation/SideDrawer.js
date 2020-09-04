@@ -9,6 +9,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import BusinessIcon from "@material-ui/icons/Business";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ExtensionRoundedIcon from "@material-ui/icons/ExtensionRounded";
 import KitchenRoundedIcon from "@material-ui/icons/KitchenRounded";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
@@ -95,6 +97,29 @@ export default function SideDrawer(props) {
                     <>
                         <List
                             className={`${props.classes.offWhite} nav-button`}>
+                            <Link to='/admin/companies'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <BusinessIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Companies' />
+                                </ListItem>
+                            </Link>
+                            <Link to='/admin/users'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <AccountBoxIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Users' />
+                                </ListItem>
+                            </Link>
+                            <Divider
+                                className={props.classes.dividerOffWhite}
+                            />
                             <Link to='/admin/courses'>
                                 <ListItem button>
                                     <ListItemIcon>

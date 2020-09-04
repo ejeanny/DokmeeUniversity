@@ -21,9 +21,11 @@ import DokmeeECMCourse from "./Software/pages/DokmeeECM/DokmeeECMCourse";
 import DokmeeECMSingleVideo from "./Software/pages/DokmeeECM/DokmeeECMSingleVideo";
 import DokmeeCourse from "./Admin/pages/Courses/Course.jsx";
 import DokmeeAddCourse from "./Admin/pages/Courses/AddCourse.jsx";
+import Companies from "./Admin/pages/Companies.jsx";
 import DokmeeUniversityTest from "./Software/pages/Test/DokmeeUniversityTest";
 import SoftNews from "./News/pages/SoftNews";
 import logo from "./images/logo.png";
+
 import logoLogin from "./images/logo-login.png";
 import "./App.css";
 
@@ -157,8 +159,8 @@ const App = () => {
                     <Route path='/admin/courses' exact>
                         <DokmeeCourse />
                     </Route>
-                    <Route path='/admin/courses/add' exact>
-                        <DokmeeAddCourse />
+                    <Route path='/admin/companies' exact>
+                        <Companies />
                     </Route>
                     <Route path='/admin/courses/edit/:cid'>
                         <DokmeeAddCourse />
