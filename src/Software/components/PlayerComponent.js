@@ -23,7 +23,6 @@ export default function PlayerComponent(props) {
         // />
         <Player
             src={`https://www.etiennejeanny.ovh//video/${props.soft}/${props.videoId}.mp4`}
-            autoPlay
             playsInline
             poster='/assets/poster.png'>
             <LoadingSpinner />

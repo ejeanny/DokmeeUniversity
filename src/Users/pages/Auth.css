@@ -13,6 +13,9 @@
 .authentication form {
     margin-bottom: 1rem;
 }
+.signup a {
+    margin: 2rem 2rem 0 0;
+}
 
 .margin {
     margin: 500px;

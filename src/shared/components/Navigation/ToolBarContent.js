@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import logo from "../../../images/logo.png";
 import "./Nav.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/auth-context";
+
 const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
@@ -78,6 +80,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ToolBarContent(props) {
+    const auth = useContext(AuthContext);
+
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -112,8 +116,8 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMenuOpen}
             onClose={handleMenuClose}>
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={auth.logout}>Logout</MenuItem>
         </Menu>
     );
 
@@ -127,31 +131,8 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}>
-            {/* <MenuItem>
-                <Button onClick={props.handleAdminMode}>
-                    {props.isAdmin ? "Student" : "Admin"}
-                </Button>
-            </MenuItem> */}
-            <MenuItem>
-                <IconButton
-                    aria-label='show 11 new notifications'
-                    color='inherit'>
-                    <Badge badgeContent={11} color='secondary'>
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label='account of current user'
-                    aria-controls='primary-search-account-menu'
-                    aria-haspopup='true'
-                    color='inherit'>
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={auth.logout}>Logout</MenuItem>
         </Menu>
     );
     return (
@@ -174,16 +155,6 @@ export default function ToolBarContent(props) {
                 <Button onClick={props.handleAdminMode} className='nav-button'>
                     {props.isAdmin ? "Student" : "Admin"}
                 </Button>
-                <IconButton
-                    aria-label='show 17 new notifications'
-                    color='inherit'
-                    className='nav-button'>
-                    <Link to='/notification'>
-                        <Badge badgeContent={17} color='secondary'>
-                            <NotificationsIcon />
-                        </Badge>
-                    </Link>
-                </IconButton>
                 <IconButton
                     edge='end'
                     aria-label='account of current user'

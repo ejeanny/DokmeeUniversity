@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -15,11 +15,12 @@ import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import LibraryBooksOutlinedIcon from "@material-ui/icons/LibraryBooksOutlined";
+import { AuthContext } from "../../context/auth-context";
 
 export default function SideDrawer(props) {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up("md"));
-
+    const auth = useContext(AuthContext);
     if (matches) {
         return (
             <Drawer
@@ -58,52 +59,36 @@ export default function SideDrawer(props) {
                 <Divider className={props.classes.dividerOffWhite} />
                 {!props.isAdmin ? (
                     <>
-                        {/* <List
-                            className={`${props.classes.offWhite} nav-button`}>
-                            <Link to='/news'>
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <AnnouncementOutlinedIcon
-                                            className={props.classes.offWhite}
-                                        />
-                                    </ListItemIcon>
-                                    <ListItemText primary='Team news' />
-                                </ListItem>
-                            </Link>
-                            <Link to='/features'>
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <NewReleasesOutlinedIcon
-                                            className={props.classes.offWhite}
-                                        />
-                                    </ListItemIcon>
-                                    <ListItemText primary='New Features' />
-                                </ListItem>
-                            </Link>
-                        </List>
-                        <Divider className={props.classes.dividerOffWhite} /> */}
                         <List
                             className={`${props.classes.offWhite} nav-button`}>
-                            <Link to='/dokmee-univeristy/dokmee-capture'>
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <ExtensionRoundedIcon
-                                            className={props.classes.offWhite}
-                                        />
-                                    </ListItemIcon>
-                                    <ListItemText primary='Dokmee Capture' />
-                                </ListItem>
-                            </Link>
-                            <Link to='/dokmee-univeristy/dokmee-ecm'>
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <KitchenRoundedIcon
-                                            className={props.classes.offWhite}
-                                        />
-                                    </ListItemIcon>
-                                    <ListItemText primary='Dokmee ECM' />
-                                </ListItem>
-                            </Link>
+                            {auth.captureAccess && (
+                                <Link to='/dokmee-univeristy/dokmee-capture'>
+                                    <ListItem button>
+                                        <ListItemIcon>
+                                            <ExtensionRoundedIcon
+                                                className={
+                                                    props.classes.offWhite
+                                                }
+                                            />
+                                        </ListItemIcon>
+                                        <ListItemText primary='Dokmee Capture' />
+                                    </ListItem>
+                                </Link>
+                            )}
+                            {auth.ecmAccess && (
+                                <Link to='/dokmee-univeristy/dokmee-ecm'>
+                                    <ListItem button>
+                                        <ListItemIcon>
+                                            <KitchenRoundedIcon
+                                                className={
+                                                    props.classes.offWhite
+                                                }
+                                            />
+                                        </ListItemIcon>
+                                        <ListItemText primary='Dokmee ECM' />
+                                    </ListItem>
+                                </Link>
+                            )}
                         </List>
                     </>
                 ) : (
@@ -162,7 +147,6 @@ export default function SideDrawer(props) {
                         </ListItem>
                     </List>
                 </Link>
-                {/* !//TODO Add right control  */}
                 <Divider className={props.classes.dividerOffWhite} />
                 <List className={`${props.classes.offWhite} nav-button`}>
                     <Link to='/dokmee-univeristy/dokmee-capture'>
@@ -185,14 +169,6 @@ export default function SideDrawer(props) {
                             <ListItemText primary='Dokmee ECM' />
                         </ListItem>
                     </Link>
-                    {/*<Link to='/dokmee-univeristy/course'>
-                                        <ListItem button onClick={props.handleDrawerClose}>
-                                            <ListItemIcon>
-                                                <MailIcon className={props.classes.offWhite} />
-                                            </ListItemIcon>
-                                            <ListItemText primary='Dokmee ECM' />
-                                        </ListItem>
-                                    </Link> */}
                     {/* <Link to='/dokmee-univeristy/dokmee-form'>
                                         <ListItem button onClick={props.handleDrawerClose}>
                                             <ListItemIcon>

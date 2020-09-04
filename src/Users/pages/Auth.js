@@ -8,6 +8,8 @@ import { AuthContext } from "../../shared/context/auth-context";
 import Input from "../../shared/components/FormElements/Input";
 import Title from "../../shared/components/UiElements/Title";
 import ButtonComponent from "../../shared/components/FormElements/Button";
+import ErrorModal from "../../shared/components/UiElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UiElements/LoadingSpinner";
 import { useForm } from "../../shared/hook/form-hooks";
 import { useHttpClient } from "../../shared/hook/http-hooks";
 import {
@@ -19,6 +21,8 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import "./Auth.css";
+
 const CustomCheckbox = withStyles({
     root: {
         color: "#3c3f41",
@@ -28,6 +32,7 @@ const CustomCheckbox = withStyles({
     },
     checked: {},
 })(props => <Checkbox color='default' {...props} />);
+
 export default function Auth() {
     const auth = useContext(AuthContext); //initialize the auth context for this components
     const [isLoginMode, setIsLoginMode] = useState(true);
@@ -60,9 +65,40 @@ export default function Auth() {
         }
         setIsLoginMode(prevMode => !prevMode);
     };
-    const authentificationSubmitHandler = event => {
+    const authentificationSubmitHandler = async event => {
         event.preventDefault();
-        auth.login();
+        if (isLoginMode) {
+            try {
+                const responseData = await sendRequest(
+                    "http://localhost:5050/api/users/login",
+                    "POST",
+                    JSON.stringify({
+                        email: formState.inputs.email.value,
+                        password: formState.inputs.password.value,
+                    }),
+                    {
+                        "Content-Type": "application/json",
+                    }
+                );
+                auth.login(
+                    responseData.userId,
+                    responseData.token,
+                    responseData.captureAccess,
+                    responseData.ecmAccess,
+                    responseData.formAccess
+                );
+            } catch (err) {}
+            // }else {
+            //     try{
+            //         const formData = new FormData();
+            //         formData.append('email', formState.inputs.email.value);
+            //         formData.append('firstName', formState.inputs.name.value);
+            //         formData.append('lastName', formState.inputs.name.value);
+            //         formData.append('comapnyName', formState.inputs.name.value);
+            //         formData.append('companyToken', formState.inputs.name.value);
+            //         formData.append('password', formState.inputs.password.value);
+            //     }
+        }
     };
     const [checked, setChecked] = useState(false);
 
@@ -72,10 +108,13 @@ export default function Auth() {
 
     return (
         <>
+            <ErrorModal error={error} onClear={clearError} />
             <Paper elevation={3} className='authentication'>
+                {isLoading && <LoadingSpinner asOverlay />}
                 {isLoginMode ? (
                     <>
                         <Title title='Sign In' />
+
                         <form onSubmit={authentificationSubmitHandler}>
                             <Input
                                 id='email'
@@ -120,11 +159,20 @@ export default function Auth() {
                                 </Box>
                             </Box>
                             <Box display='flex' justifyContent='flex-start'>
-                                <ButtonComponent
-                                    type='submit'
-                                    disabled={!formState.isValid}>
-                                    Login
-                                </ButtonComponent>
+                                <Box display='flex' flexGrow={1}>
+                                    <ButtonComponent
+                                        type='submit'
+                                        disabled={!formState.isValid}>
+                                        Login
+                                    </ButtonComponent>
+                                </Box>
+                                <Box display='flex' className='signup'>
+                                    <Link to='/signup' className='signup'>
+                                        <Button size='medium'>
+                                            <span>Sign up</span>
+                                        </Button>
+                                    </Link>
+                                </Box>
                             </Box>
                         </form>
                     </>

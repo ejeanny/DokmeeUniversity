@@ -11,6 +11,9 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import BusinessIcon from "@material-ui/icons/Business";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
@@ -85,6 +88,84 @@ const InputComponent = props => {
     let element;
     switch (props.element) {
         case "login":
+            element = (
+                <div className={props.mainClasses}>
+                    <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+                    <Input
+                        id={props.id}
+                        type={props.type}
+                        placeholder={props.placeholder}
+                        onChange={changeHandler}
+                        onBlur={touchHandler}
+                        value={inputState.value}
+                        className={`${props.subMainClasses}`}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <AlternateEmailIcon />
+                            </InputAdornment>
+                        }
+                    />
+                    {!inputState.isValid && inputState.isTouched && (
+                        <FormHelperText id={props.id} className='input-error'>
+                            {props.errorText}
+                        </FormHelperText>
+                    )}
+                </div>
+            );
+            break;
+        case "code":
+            element = (
+                <div className={props.mainClasses}>
+                    <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+                    <Input
+                        id={props.id}
+                        type={props.type}
+                        placeholder={props.placeholder}
+                        onChange={changeHandler}
+                        onBlur={touchHandler}
+                        value={inputState.value}
+                        className={`${props.subMainClasses}`}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <VpnKeyIcon />
+                            </InputAdornment>
+                        }
+                    />
+                    {!inputState.isValid && inputState.isTouched && (
+                        <FormHelperText id={props.id} className='input-error'>
+                            {props.errorText}
+                        </FormHelperText>
+                    )}
+                </div>
+            );
+            break;
+        case "company":
+            element = (
+                <div className={props.mainClasses}>
+                    <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+                    <Input
+                        id={props.id}
+                        type={props.type}
+                        placeholder={props.placeholder}
+                        onChange={changeHandler}
+                        onBlur={touchHandler}
+                        value={inputState.value}
+                        className={`${props.subMainClasses}`}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <BusinessIcon />
+                            </InputAdornment>
+                        }
+                    />
+                    {!inputState.isValid && inputState.isTouched && (
+                        <FormHelperText id={props.id} className='input-error'>
+                            {props.errorText}
+                        </FormHelperText>
+                    )}
+                </div>
+            );
+            break;
+        case "name":
             element = (
                 <div className={props.mainClasses}>
                     <InputLabel htmlFor={props.id}>{props.label}</InputLabel>

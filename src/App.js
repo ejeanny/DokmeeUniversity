@@ -7,7 +7,10 @@ import {
     Switch,
 } from "react-router-dom";
 import { AuthContext } from "./shared/context/auth-context";
+import { useAuth } from "./shared/hook/auth-hook";
+
 import Auth from "./Users/pages/Auth";
+import Signup from "./Users/pages/Signup";
 import NavBar from "./shared/components/Navigation/MainNav";
 import Dashboard from "./Users/pages/Dashboard";
 import DokmeeCapture from "./Software/pages/DokmeeCapture/DokmeeCapture";
@@ -23,6 +26,7 @@ import SoftNews from "./News/pages/SoftNews";
 import logo from "./images/logo.png";
 import logoLogin from "./images/logo-login.png";
 import "./App.css";
+
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     mainNav: {
@@ -118,19 +122,20 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function App() {
+const App = () => {
+    const {
+        token,
+        login,
+        logout,
+        userId,
+        captureAccess,
+        ecmAccess,
+        formAccess,
+    } = useAuth();
+
     const [open, setOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isAdminMode, setAdminMode] = useState(false);
     // const [userId, setUserId] = useState(false);
-    const login = useCallback(uid => {
-        setIsLoggedIn(true);
-        // setUserId(uid);
-    }, []);
-    const logout = useCallback(() => {
-        setIsLoggedIn(false);
-        // setUserId(null);
-    }, []);
     const handleDrawerOpen = event => {
         setOpen(true);
     };
@@ -142,7 +147,7 @@ function App() {
     };
     const classes = useStyles();
     let routes;
-    if (isLoggedIn) {
+    if (token) {
         if (isAdminMode) {
             routes = (
                 <Switch>
@@ -170,22 +175,38 @@ function App() {
                     <Route path='/features' exact>
                         <SoftNews />
                     </Route>
+                    {captureAccess && (
+                        <>
+                            <Route
+                                path='/dokmee-univeristy/dokmee-capture'
+                                exact>
+                                <DokmeeCaptureCourse />
+                            </Route>
+                            <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug/:videoId'>
+                                <DokmeeCaptureVideo />
+                            </Route>
+                            <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
+                                <DokmeeCaptureCourse />
+                            </Route>
+                            <Route path='/dokmee-university/test/:testId'>
+                                <DokmeeUniversityTest />
+                            </Route>
+                        </>
+                    )}
+                    {ecmAccess && (
+                        <>
+                            <Route path='/dokmee-univeristy/dokmee-ecm' exact>
+                                <DokmeeECMCourse />
+                            </Route>
+                            <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
+                                <DokmeeECMSingleVideo />
+                            </Route>
+                            <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
+                                <DokmeeECMCourse />
+                            </Route>
+                        </>
+                    )}
 
-                    <Route path='/dokmee-univeristy/dokmee-capture' exact>
-                        <DokmeeCaptureCourse />
-                    </Route>
-                    <Route path='/dokmee-university/test/:testId'>
-                        <DokmeeUniversityTest />
-                    </Route>
-                    <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug/:videoId'>
-                        <DokmeeCaptureVideo />
-                    </Route>
-                    <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
-                        <DokmeeCaptureCourse />
-                    </Route>
-                    <Route path='/dokmee-univeristy/dokmee-ecm' exact>
-                        <DokmeeECMCourse />
-                    </Route>
                     <Route path='/dokmee-univeristy/courses' exact>
                         <DokmeeCourse />
                     </Route>
@@ -196,12 +217,6 @@ function App() {
                         <DokmeeAddCourse />
                     </Route>
 
-                    <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
-                        <DokmeeECMSingleVideo />
-                    </Route>
-                    <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
-                        <DokmeeECMCourse />
-                    </Route>
                     <Redirect to='/'></Redirect>
                 </Switch>
             );
@@ -211,6 +226,9 @@ function App() {
                 <Route path='/auth' exact>
                     <Auth />
                 </Route>
+                <Route path='/signup' exact>
+                    <Signup />
+                </Route>
                 <Redirect to='/auth'></Redirect>
             </Switch>
         );
@@ -219,17 +237,18 @@ function App() {
     return (
         <AuthContext.Provider
             value={{
-                isLoggedIn: isLoggedIn,
-                // userId: userId,
+                isLoggedIn: !!token,
+                token: token,
+                userId: userId,
+                captureAccess: captureAccess,
+                ecmAccess: ecmAccess,
+                formAccess: formAccess,
                 login: login,
                 logout: logout,
             }}>
-            <div
-                className={
-                    isLoggedIn ? `${classes.mainNav}` : `${classes.login}`
-                }>
+            <div className={token ? `${classes.mainNav}` : `${classes.login}`}>
                 <Router>
-                    {isLoggedIn && (
+                    {token && (
                         <NavBar
                             classes={classes}
                             handleDrawerOpen={handleDrawerOpen}
@@ -239,13 +258,12 @@ function App() {
                             open={open}></NavBar>
                     )}
 
-                    <main
-                        className={isLoggedIn ? `${classes.content}` : "login"}>
-                        {isLoggedIn && <div className={classes.toolbar} />}
+                    <main className={token ? `${classes.content}` : "login"}>
+                        {token && <div className={classes.toolbar} />}
                         <Switch>{routes}</Switch>
                     </main>
                 </Router>
-                {!isLoggedIn && (
+                {!token && (
                     <img
                         src={logoLogin}
                         alt='Dokmee'
@@ -254,6 +272,6 @@ function App() {
             </div>
         </AuthContext.Provider>
     );
-}
+};
 
 export default App;
