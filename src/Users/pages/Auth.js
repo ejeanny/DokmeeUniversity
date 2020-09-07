@@ -70,7 +70,7 @@ export default function Auth() {
         if (isLoginMode) {
             try {
                 const responseData = await sendRequest(
-                    "http://localhost:5050/api/users/login",
+                    "http://localhost:5555/api/users/login",
                     "POST",
                     JSON.stringify({
                         email: formState.inputs.email.value,
