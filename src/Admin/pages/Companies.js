@@ -225,11 +225,11 @@ export default function Companies() {
     return (
         <>
             <ErrorModal error={error} onClear={clearError} />
-            {/* {isLoading && ( */}
-            <div className='center'>
-                <LoadingSpinner />
-            </div>
-            {/* )} */}
+            {isLoading && loadedCompanies && (
+                <div className='center'>
+                    <LoadingSpinner asOverlay />
+                </div>
+            )}
             <MaterialTable
                 title='Companies'
                 icons={tableIcons}

@@ -29,7 +29,7 @@ export default function Signup() {
         event.preventDefault();
         try {
             const responseData = await sendRequest(
-                "http://localhost:5050/api/users/signup",
+                "http://localhost:5555/api/users/signup",
                 "POST",
                 JSON.stringify({
                     firstName: formState.inputs.firstName.value,
@@ -38,6 +38,7 @@ export default function Signup() {
                     password: formState.inputs.password.value,
                     companyName: formState.inputs.companyName.value,
                     companyToken: formState.inputs.companyToken.value,
+                    isAdmin: false,
                 }),
                 {
                     "Content-Type": "application/json",
