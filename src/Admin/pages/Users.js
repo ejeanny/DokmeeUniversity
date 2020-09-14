@@ -158,6 +158,7 @@ export default function Users() {
     const handleCompanyNameChange = event => {
         setCompanyName(event.target.name);
         setCompanyToken(event.target.value);
+        console.log(companyName);
     };
     //const handleCompanyNameChange = event => setCompanyName(event.target.value);
 
@@ -166,7 +167,7 @@ export default function Users() {
         closeUserHandler();
         try {
             await sendRequest(
-                "http://localhost:5555/api/users",
+                "http://localhost:5555/api/users/signup",
                 "POST",
                 JSON.stringify({
                     firstName: formState.inputs.firstName.value,
@@ -295,7 +296,9 @@ export default function Users() {
                                             return (
                                                 <option
                                                     value={company.companyToken}
-                                                    name={company.companyName}>
+                                                    companyName={
+                                                        company.companyName
+                                                    }>
                                                     {company.companyName}
                                                 </option>
                                             );
