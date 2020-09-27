@@ -196,9 +196,9 @@ export default function ToolBarContent(props) {
             </Link>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-                <Button onClick={props.handleAdminMode} className='nav-button'>
+                {/* <Button onClick={props.handleAdminMode} className='nav-button'>
                     {props.isAdmin ? "Student" : "Admin"}
-                </Button>
+                </Button> */}
                 <IconButton
                     edge='end'
                     aria-label='account of current user'
