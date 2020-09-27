@@ -82,22 +82,14 @@ export default function Auth() {
                 );
                 auth.login(
                     responseData.userId,
+                    responseData.firstName,
+                    responseData.lastName,
                     responseData.token,
                     responseData.captureAccess,
                     responseData.ecmAccess,
                     responseData.formAccess
                 );
             } catch (err) {}
-            // }else {
-            //     try{
-            //         const formData = new FormData();
-            //         formData.append('email', formState.inputs.email.value);
-            //         formData.append('firstName', formState.inputs.name.value);
-            //         formData.append('lastName', formState.inputs.name.value);
-            //         formData.append('comapnyName', formState.inputs.name.value);
-            //         formData.append('companyToken', formState.inputs.name.value);
-            //         formData.append('password', formState.inputs.password.value);
-            //     }
         }
     };
     const [checked, setChecked] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,6 +15,26 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
+/* ------------------------------------ Modal import ----------------------------------- */
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "../FormElements/Input";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
+import { useHttpClient } from "../../hook/http-hooks";
+import { useForm } from "../../hook/form-hooks";
+import {
+    VALIDATOR_EMAIL,
+    VALIDATOR_MINLENGTH,
+    VALIDATOR_REQUIRE,
+} from "../../util/validators";
+
+import ButtonComponent from "../FormElements/Button";
+import InputComponent from "../FormElements/Input";
+
+/* ------------------------- Custom javascript style ------------------------ */
 const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
@@ -79,12 +99,32 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+/* ----------------------------- Component start ---------------------------- */
 export default function ToolBarContent(props) {
     const auth = useContext(AuthContext);
-
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [showProfileModal, setShowProfileModal] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+    const [formState, inputHandler, setFormData] = useForm(
+        {
+            firstName: {
+                value: "",
+                isValid: false,
+            },
+            lastName: {
+                value: "",
+                isValid: false,
+            },
+            lastName: {
+                value: "",
+                isValid: false,
+            },
+        },
+        false
+    ); // check if the input are input are Valid
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -106,6 +146,10 @@ export default function ToolBarContent(props) {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    const openProfileModal = () => setShowProfileModal(true);
+
+    const closeProfileHandler = () => setShowProfileModal(false);
+
     const menuId = "primary-search-account-menu";
     const renderMenu = (
         <Menu
@@ -116,7 +160,7 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMenuOpen}
             onClose={handleMenuClose}>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={openProfileModal}>My account</MenuItem>
             <MenuItem onClick={auth.logout}>Logout</MenuItem>
         </Menu>
     );
@@ -131,7 +175,7 @@ export default function ToolBarContent(props) {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={openProfileModal}>My account</MenuItem>
             <MenuItem onClick={auth.logout}>Logout</MenuItem>
         </Menu>
     );
@@ -177,6 +221,59 @@ export default function ToolBarContent(props) {
             </div>
             {renderMobileMenu}
             {renderMenu}
+            <Dialog
+                disableBackdropClick
+                disableEscapeKeyDown
+                open={showProfileModal}
+                onClose={closeProfileHandler}>
+                <DialogTitle>My Profile</DialogTitle>
+                <DialogContent>
+                    <form className={classes.container}>
+                        <FormControl className={classes.formControl}>
+                            <Input
+                                id='firstName'
+                                element='name'
+                                type='text'
+                                label='First Name'
+                                initialValue={auth.firstName}
+                                validators={[VALIDATOR_REQUIRE()]}
+                                onInput={inputHandler}
+                                mainClasses='first-input'
+                                subMainClasses='auth-input'
+                                errorText='Required'></Input>
+                            <Input
+                                id='lastName'
+                                element='name'
+                                type='text'
+                                label='Last Name'
+                                initialValue={auth.lastName}
+                                validators={[VALIDATOR_REQUIRE()]}
+                                onInput={inputHandler}
+                                mainClasses='first-input'
+                                subMainClasses='auth-input'
+                                errorText='Required'></Input>
+                            {/* <Button
+                                onClick={switchModeHandler}
+                                className='auth-forgot'
+                                size='small'>
+                                Forgot Password
+                            </Button> */}
+                        </FormControl>
+                    </form>
+                </DialogContent>
+                <DialogActions>
+                    <ButtonComponent onClick={closeProfileHandler} dark={true}>
+                        Cancel
+                    </ButtonComponent>
+                    <ButtonComponent
+                        type='submit'
+                        disabled={!formState.isValid}
+                        // onClick={profilSubmithandler}
+                    >
+                        Modify
+                    </ButtonComponent>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }

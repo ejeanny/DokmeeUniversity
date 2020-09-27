@@ -131,6 +131,8 @@ const App = () => {
         login,
         logout,
         userId,
+        firstName,
+        lastName,
         captureAccess,
         ecmAccess,
         formAccess,
@@ -188,12 +190,13 @@ const App = () => {
                                 exact>
                                 <DokmeeCaptureCourse />
                             </Route>
-                            <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug/:videoId'>
+                            <Route path='/dokmee-univeristy/dokmee-capture/:videoId'>
                                 <DokmeeCaptureVideo />
                             </Route>
-                            <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
+                            {/* <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
                                 <DokmeeCaptureCourse />
-                            </Route>
+                            </Route> */}
+
                             <Route path='/dokmee-university/test/:testId'>
                                 <DokmeeUniversityTest />
                             </Route>
@@ -246,6 +249,8 @@ const App = () => {
                 isLoggedIn: !!token,
                 token: token,
                 userId: userId,
+                firstName: firstName,
+                lastName: lastName,
                 captureAccess: captureAccess,
                 ecmAccess: ecmAccess,
                 formAccess: formAccess,

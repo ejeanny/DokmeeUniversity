@@ -20,7 +20,7 @@ export default function CourseContentComponents(props) {
                             img={props.img}
                             title={v.slug}
                             action='Watch the video'
-                            url={`/dokmee-univeristy/${props.soft}/${props.slug}/${v.id}`}
+                            url={`/dokmee-univeristy/${props.soft}/${v.id}`}
                         />
                     </Grid>
                 );

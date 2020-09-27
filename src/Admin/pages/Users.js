@@ -149,16 +149,20 @@ export default function Users() {
         { title: "Company Name", field: "companyName", editable: "never" },
         { title: "First Name", field: "firstName" },
         { title: "Last Name", field: "lastName" },
-        { title: "Email", field: "email" },
+        { title: "Email", field: "email", editable: "never" },
+        {
+            title: "Admin",
+            field: "isAdmin",
+            type: "boolean",
+            searchable: false,
+        },
     ];
     const openUserModal = () => setShowAddUserModal(true);
 
     const closeUserHandler = () => setShowAddUserModal(false);
     const handleAdminChange = () => setAdminChecked(!checkedAdmin);
     const handleCompanyNameChange = event => {
-        setCompanyName(event.target.name);
         setCompanyToken(event.target.value);
-        console.log(companyName);
     };
     //const handleCompanyNameChange = event => setCompanyName(event.target.value);
 
@@ -167,14 +171,13 @@ export default function Users() {
         closeUserHandler();
         try {
             await sendRequest(
-                "http://localhost:5555/api/users/signup",
+                "http://localhost:5555/api/users/create",
                 "POST",
                 JSON.stringify({
                     firstName: formState.inputs.firstName.value,
                     lastName: formState.inputs.lastName.value,
                     email: formState.inputs.email.value,
                     password: formState.inputs.password.value,
-                    companyName: companyName,
                     companyToken: companyToken,
                     isAdmin: checkedAdmin,
                 }),
@@ -230,21 +233,15 @@ export default function Users() {
                         editable={{
                             onRowUpdate: (newData, oldData) =>
                                 new Promise(async (resolve, reject) => {
-                                    console.log("New", newData);
-                                    console.log("old", oldData);
                                     await sendRequest(
                                         `http://localhost:5555/api/users/${oldData.id}`,
                                         "PATCH",
                                         JSON.stringify({
-                                            // companyEmail: newData.companyEmail,
-                                            // companyCaptureAccess:
-                                            //     newData.companyCaptureAccess,
-                                            // companyFormAccess:
-                                            //     newData.companyFormAccess,
-                                            // companyEcmAccess: newData.companyEcmAccess,
+                                            firstName: newData.firstName,
+                                            lastName: newData.lastName,
+                                            isAdmin: newData.isAdmin,
                                         }),
                                         {
-                                            //Authorization: "Bearer " + auth.token,
                                             "Content-Type": "application/json",
                                         }
                                     );
@@ -252,13 +249,18 @@ export default function Users() {
                                         "http://localhost:5000/api/users"
                                     );
                                     setLoadedUsers(responseData.users);
-                                    //setLoadedusers(responseData.users);
-
-                                    // const dataUpdate = [...data];
-                                    // const index = oldData.tableData.id;
-                                    // dataUpdate[index] = newData;
-                                    // setData([...dataUpdate]);
-
+                                    resolve();
+                                }),
+                            onRowDelete: oldData =>
+                                new Promise(async (resolve, reject) => {
+                                    await sendRequest(
+                                        `http://localhost:5555/api/users/${oldData.id}`,
+                                        "DELETE"
+                                    );
+                                    const responseData = await sendRequest(
+                                        "http://localhost:5000/api/users"
+                                    );
+                                    setLoadedUsers(responseData.users);
                                     resolve();
                                 }),
                         }}

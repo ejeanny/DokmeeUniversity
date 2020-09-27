@@ -127,15 +127,6 @@ export default function CourseVideoComponent(props) {
                             testId={props.testId}
                         />
                         <Paper className='video-description' elevation={2}>
-                            {/* <HorizontalTabsComponent
-                                    matches={props.matches}
-                                    information={props.course}
-                                    videoId={props.videoId}
-                                    tabs={props.tabs}
-                                    soft={props.soft}
-                                    watched={props.course.courseOver}
-                                    testId={props.course.testId}
-                                /> */}
                             <Typography variant='h5'>
                                 <b>{props.videoInfo.slug}</b>
                             </Typography>

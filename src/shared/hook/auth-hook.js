@@ -6,25 +6,41 @@ export const useAuth = () => {
     const [token, setToken] = useState(false);
     const [tokenExpirationDate, setTokenExpirationDate] = useState();
     const [userId, setUserId] = useState(false);
+    const [firstName, setUserFirstName] = useState();
+    const [lastName, setLastName] = useState();
     const [captureAccess, setcaptureAccess] = useState(false);
     const [ecmAccess, setecmAccess] = useState(false);
     const [formAccess, setformAccess] = useState(false);
 
     const login = useCallback(
-        (uid, token, captureAccess, ecmAccess, formAccess, expirationDate) => {
+        (
+            uid,
+            firstName,
+            lastName,
+            token,
+            captureAccess,
+            ecmAccess,
+            formAccess,
+            expirationDate
+        ) => {
             setToken(token);
             setUserId(uid);
+            setUserFirstName(firstName);
+            setLastName(lastName);
             setcaptureAccess(captureAccess);
             setecmAccess(ecmAccess);
             setformAccess(formAccess);
             const tokenExpirationDate =
                 expirationDate || new Date(new Date().getTime() + 1000 * 3600);
+            console.log(tokenExpirationDate);
             setTokenExpirationDate(tokenExpirationDate);
             localStorage.setItem(
                 "userData",
                 JSON.stringify({
                     userId: uid,
                     token: token,
+                    firstName: firstName,
+                    lastName: lastName,
                     expirationDate: tokenExpirationDate.toISOString(),
                     captureAccess: captureAccess,
                     ecmAccess: ecmAccess,
@@ -34,11 +50,12 @@ export const useAuth = () => {
         },
         []
     );
-    console.log(tokenExpirationDate);
     const logout = useCallback(() => {
         setToken(null);
         setUserId(null);
         setTokenExpirationDate(null);
+        setUserFirstName(null);
+        setLastName(null);
         setcaptureAccess(null);
         setecmAccess(null);
         setformAccess(null);
@@ -65,6 +82,8 @@ export const useAuth = () => {
             login(
                 storedData.userId,
                 storedData.token,
+                storedData.firstName,
+                storedData.lastName,
                 storedData.userId,
                 storedData.captureAccess,
                 storedData.ecmAccess,
@@ -78,6 +97,8 @@ export const useAuth = () => {
         token,
         login,
         logout,
+        firstName,
+        lastName,
         userId,
         captureAccess,
         ecmAccess,
