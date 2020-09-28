@@ -6,6 +6,7 @@ export const AuthContext = createContext({
     token: null,
     firstName: null,
     lastName: null,
+    isAdmin: false,
     captureAccess: false,
     ecmAccess: false,
     formAccess: false,

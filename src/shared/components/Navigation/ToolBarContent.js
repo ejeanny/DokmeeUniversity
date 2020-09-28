@@ -102,6 +102,7 @@ const useStyles = makeStyles(theme => ({
 /* ----------------------------- Component start ---------------------------- */
 export default function ToolBarContent(props) {
     const auth = useContext(AuthContext);
+    console.log(auth);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const classes = useStyles();
     const [showProfileModal, setShowProfileModal] = useState(false);

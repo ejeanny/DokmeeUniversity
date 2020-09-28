@@ -59,41 +59,7 @@ export default function SideDrawer(props) {
                     </List>
                 </Link>
                 <Divider className={props.classes.dividerOffWhite} />
-                {!props.isAdmin ? (
-                    <>
-                        <List
-                            className={`${props.classes.offWhite} nav-button`}>
-                            {auth.captureAccess && (
-                                <Link to='/dokmee-univeristy/dokmee-capture'>
-                                    <ListItem button>
-                                        <ListItemIcon>
-                                            <ExtensionRoundedIcon
-                                                className={
-                                                    props.classes.offWhite
-                                                }
-                                            />
-                                        </ListItemIcon>
-                                        <ListItemText primary='Dokmee Capture' />
-                                    </ListItem>
-                                </Link>
-                            )}
-                            {auth.ecmAccess && (
-                                <Link to='/dokmee-univeristy/dokmee-ecm'>
-                                    <ListItem button>
-                                        <ListItemIcon>
-                                            <KitchenRoundedIcon
-                                                className={
-                                                    props.classes.offWhite
-                                                }
-                                            />
-                                        </ListItemIcon>
-                                        <ListItemText primary='Dokmee ECM' />
-                                    </ListItem>
-                                </Link>
-                            )}
-                        </List>
-                    </>
-                ) : (
+                {props.isAdmin && (
                     <>
                         <List
                             className={`${props.classes.offWhite} nav-button`}>
@@ -117,9 +83,6 @@ export default function SideDrawer(props) {
                                     <ListItemText primary='Users' />
                                 </ListItem>
                             </Link>
-                            <Divider
-                                className={props.classes.dividerOffWhite}
-                            />
                             <Link to='/admin/courses'>
                                 <ListItem button>
                                     <ListItemIcon>
@@ -133,6 +96,35 @@ export default function SideDrawer(props) {
                         </List>
                     </>
                 )}
+                <Divider className={props.classes.dividerOffWhite} />
+                <>
+                    <List className={`${props.classes.offWhite} nav-button`}>
+                        {auth.captureAccess && (
+                            <Link to='/dokmee-univeristy/dokmee-capture'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <ExtensionRoundedIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Dokmee Capture' />
+                                </ListItem>
+                            </Link>
+                        )}
+                        {auth.ecmAccess && (
+                            <Link to='/dokmee-univeristy/dokmee-ecm'>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <KitchenRoundedIcon
+                                            className={props.classes.offWhite}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Dokmee ECM' />
+                                </ListItem>
+                            </Link>
+                        )}
+                    </List>
+                </>
             </Drawer>
         );
     } else {

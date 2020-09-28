@@ -11,6 +11,7 @@ export const useAuth = () => {
     const [captureAccess, setcaptureAccess] = useState(false);
     const [ecmAccess, setecmAccess] = useState(false);
     const [formAccess, setformAccess] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const login = useCallback(
         (
@@ -21,6 +22,7 @@ export const useAuth = () => {
             captureAccess,
             ecmAccess,
             formAccess,
+            isAdmin,
             expirationDate
         ) => {
             setToken(token);
@@ -30,9 +32,9 @@ export const useAuth = () => {
             setcaptureAccess(captureAccess);
             setecmAccess(ecmAccess);
             setformAccess(formAccess);
+            setIsAdmin(isAdmin);
             const tokenExpirationDate =
                 expirationDate || new Date(new Date().getTime() + 1000 * 3600);
-            console.log(tokenExpirationDate);
             setTokenExpirationDate(tokenExpirationDate);
             localStorage.setItem(
                 "userData",
@@ -41,6 +43,7 @@ export const useAuth = () => {
                     token: token,
                     firstName: firstName,
                     lastName: lastName,
+                    isAdmin: isAdmin,
                     expirationDate: tokenExpirationDate.toISOString(),
                     captureAccess: captureAccess,
                     ecmAccess: ecmAccess,
@@ -88,6 +91,7 @@ export const useAuth = () => {
                 storedData.captureAccess,
                 storedData.ecmAccess,
                 storedData.formAccess,
+                storedData.isAdmin,
                 new Date(storedData.expiration)
             );
         }
@@ -103,5 +107,6 @@ export const useAuth = () => {
         captureAccess,
         ecmAccess,
         formAccess,
+        isAdmin,
     };
 };

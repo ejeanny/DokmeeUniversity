@@ -70,7 +70,7 @@ export default function Auth() {
         if (isLoginMode) {
             try {
                 const responseData = await sendRequest(
-                    "http://localhost:5555/api/users/login",
+                    "https://www.etiennejeanny.ovh/api/users/login",
                     "POST",
                     JSON.stringify({
                         email: formState.inputs.email.value,
@@ -87,7 +87,8 @@ export default function Auth() {
                     responseData.token,
                     responseData.captureAccess,
                     responseData.ecmAccess,
-                    responseData.formAccess
+                    responseData.formAccess,
+                    responseData.isAdmin
                 );
             } catch (err) {}
         }

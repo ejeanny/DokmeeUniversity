@@ -133,105 +133,90 @@ const App = () => {
         userId,
         firstName,
         lastName,
+        isAdmin,
         captureAccess,
         ecmAccess,
         formAccess,
     } = useAuth();
 
     const [open, setOpen] = useState(false);
-    const [isAdminMode, setAdminMode] = useState(false);
-    // const [userId, setUserId] = useState(false);
     const handleDrawerOpen = event => {
         setOpen(true);
     };
     const handleDrawerClose = event => {
         setOpen(false);
     };
-    const handleAdminMode = event => {
-        setAdminMode(!isAdminMode);
-    };
+
     const classes = useStyles();
     let routes;
     if (token) {
-        if (isAdminMode) {
-            routes = (
-                <Switch>
-                    <Route path='/admin' exact>
-                        <Dashboard />
-                    </Route>
-                    <Route path='/admin/courses' exact>
-                        <DokmeeCourse />
-                    </Route>
-                    <Route path='/admin/companies' exact>
-                        <Companies />
-                    </Route>
-                    <Route path='/admin/users' exact>
-                        <Users />
-                    </Route>
-                    <Route path='/admin/courses/edit/:cid'>
-                        <DokmeeAddCourse />
-                    </Route>
-                    <Redirect to='/admin'></Redirect>
-                </Switch>
-            );
-        } else
-            routes = (
-                <Switch>
-                    <Route path='/' exact>
-                        <Dashboard />
-                    </Route>
-                    <Route path='/features' exact>
-                        <SoftNews />
-                    </Route>
-                    {captureAccess && (
-                        <>
-                            <Route
-                                path='/dokmee-univeristy/dokmee-capture'
-                                exact>
-                                <DokmeeCaptureCourse />
-                            </Route>
-                            <Route path='/dokmee-univeristy/dokmee-capture/:videoId'>
-                                <DokmeeCaptureVideo />
-                            </Route>
-                            {/* <Route path='/dokmee-univeristy/dokmee-capture/:courseSlug'>
-                                <DokmeeCaptureCourse />
-                            </Route> */}
+        routes = (
+            <>
+                <Route path='/' exact>
+                    <Dashboard />
+                </Route>
+                {captureAccess && (
+                    <>
+                        <Route path='/dokmee-univeristy/dokmee-capture' exact>
+                            <DokmeeCaptureCourse />
+                        </Route>
+                        <Route path='/dokmee-univeristy/dokmee-capture/:videoId'>
+                            <DokmeeCaptureVideo />
+                        </Route>
+                        <Route path='/dokmee-university/test/:testId'>
+                            <DokmeeUniversityTest />
+                        </Route>
+                    </>
+                )}
+                {ecmAccess && (
+                    <>
+                        <Route path='/dokmee-univeristy/dokmee-ecm' exact>
+                            <DokmeeECMCourse />
+                        </Route>
+                        <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
+                            <DokmeeECMSingleVideo />
+                        </Route>
+                        <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
+                            <DokmeeECMCourse />
+                        </Route>
+                    </>
+                )}
+                {isAdmin && (
+                    <>
+                        <Route path='/admin/courses' exact>
+                            <DokmeeCourse />
+                        </Route>
+                        <Route path='/admin/companies' exact>
+                            <Companies />
+                        </Route>
+                        <Route path='/admin/users' exact>
+                            <Users />
+                        </Route>
+                        <Route path='/admin/courses/edit/:cid'>
+                            <DokmeeAddCourse />
+                        </Route>
+                        <Route path='/features' exact>
+                            <SoftNews />
+                        </Route>
+                    </>
+                )}
 
-                            <Route path='/dokmee-university/test/:testId'>
-                                <DokmeeUniversityTest />
-                            </Route>
-                        </>
-                    )}
-                    {ecmAccess && (
-                        <>
-                            <Route path='/dokmee-univeristy/dokmee-ecm' exact>
-                                <DokmeeECMCourse />
-                            </Route>
-                            <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug/:videoId'>
-                                <DokmeeECMSingleVideo />
-                            </Route>
-                            <Route path='/dokmee-univeristy/dokmee-ecm/:courseSlug'>
-                                <DokmeeECMCourse />
-                            </Route>
-                        </>
-                    )}
+                {/* <Route path='/dokmee-univeristy/courses' exact>
+                    <DokmeeCourse />
+                </Route>
+                <Route path='/dokmee-univeristy/courses/add' exact>
+                    <DokmeeAddCourse />
+                </Route>
+                <Route path='/dokmee-univeristy/courses/edit/:cid'>
+                    <DokmeeAddCourse />
+                </Route> */}
 
-                    <Route path='/dokmee-univeristy/courses' exact>
-                        <DokmeeCourse />
-                    </Route>
-                    <Route path='/dokmee-univeristy/courses/add' exact>
-                        <DokmeeAddCourse />
-                    </Route>
-                    <Route path='/dokmee-univeristy/courses/edit/:cid'>
-                        <DokmeeAddCourse />
-                    </Route>
-
-                    <Redirect to='/'></Redirect>
-                </Switch>
-            );
+                <Redirect to='/'></Redirect>
+            </>
+        );
     } else {
         routes = (
-            <Switch>
+            <>
                 <Route path='/auth' exact>
                     <Auth />
                 </Route>
@@ -239,7 +224,7 @@ const App = () => {
                     <Signup />
                 </Route>
                 <Redirect to='/auth'></Redirect>
-            </Switch>
+            </>
         );
     }
 
@@ -251,6 +236,7 @@ const App = () => {
                 userId: userId,
                 firstName: firstName,
                 lastName: lastName,
+                isAdmin: isAdmin,
                 captureAccess: captureAccess,
                 ecmAccess: ecmAccess,
                 formAccess: formAccess,
@@ -264,8 +250,7 @@ const App = () => {
                             classes={classes}
                             handleDrawerOpen={handleDrawerOpen}
                             handleDrawerClose={handleDrawerClose}
-                            handleAdminMode={handleAdminMode}
-                            isAdmin={isAdminMode}
+                            isAdmin={isAdmin}
                             open={open}></NavBar>
                     )}
 
