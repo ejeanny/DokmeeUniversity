@@ -70,7 +70,7 @@ export default function Auth() {
         if (isLoginMode) {
             try {
                 const responseData = await sendRequest(
-                    "https://www.etiennejeanny.ovh/api/users/login",
+                    "https://dokmee-university.herokuapp.com/api/users/login",
                     "POST",
                     JSON.stringify({
                         email: formState.inputs.email.value,
