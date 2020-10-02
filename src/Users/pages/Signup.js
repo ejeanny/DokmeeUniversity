@@ -44,7 +44,16 @@ export default function Signup() {
                     "Content-Type": "application/json",
                 }
             );
-            auth.login(responseData.userId, responseData.token);
+            auth.login(
+                responseData.userId,
+                responseData.firstName,
+                responseData.lastName,
+                responseData.token,
+                responseData.captureAccess,
+                responseData.ecmAccess,
+                responseData.formAccess,
+                responseData.isAdmin
+            );
         } catch (err) {}
     };
 

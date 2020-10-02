@@ -258,7 +258,7 @@ export default function Users() {
                                         "DELETE"
                                     );
                                     const responseData = await sendRequest(
-                                        "http://localhost:5000/api/users"
+                                        "http://localhost:5555/api/users"
                                     );
                                     setLoadedUsers(responseData.users);
                                     resolve();

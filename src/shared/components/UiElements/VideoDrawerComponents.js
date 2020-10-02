@@ -102,7 +102,7 @@ export default function PermanentDrawerRight(props) {
                         <Link
                             key={v.id}
                             className='duLink'
-                            to={`/dokmee-univeristy/${props.soft}/${props.slug}/${v.id}`}>
+                            to={`/dokmee-univeristy/${props.soft}/${v.id}`}>
                             <ListItem button>
                                 <ListItemIcon>
                                     {v.type === "video" ? (

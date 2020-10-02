@@ -202,7 +202,7 @@ export default function Companies() {
             setCaptureChecked(false);
             setFormsChecked(false);
             const responseData = await sendRequest(
-                "http://localhost:5000/api/companies"
+                "http://localhost:5555/api/companies"
             );
             setLoadedCompanies(responseData.companies);
         } catch (err) {
@@ -214,7 +214,7 @@ export default function Companies() {
         const fetchCompanies = async () => {
             try {
                 const responseData = await sendRequest(
-                    "http://localhost:5000/api/companies"
+                    "http://localhost:5555/api/companies"
                 );
                 setLoadedCompanies(responseData.companies);
             } catch (err) {}
@@ -261,7 +261,7 @@ export default function Companies() {
                                 }
                             );
                             const responseData = await sendRequest(
-                                "http://localhost:5000/api/companies"
+                                "http://localhost:5555/api/companies"
                             );
                             setLoadedCompanies(responseData.companies);
                             //setLoadedCompanies(responseData.companies);
