@@ -199,7 +199,8 @@ export default function Course() {
 
     return (
         <>
-            <CourseComponent
+        Hello
+            {/* <CourseComponent
                 spacing={3}
                 video={DUMMY_VIDEO}
                 soft='course'
@@ -216,7 +217,7 @@ export default function Course() {
                 disableEscapeKeyDown
                 open={open}
                 onClose={handleClose}>
-                <DialogTitle>Fill the form</DialogTitle>
+                <DialogTitle>Create your Course</DialogTitle>
                 <DialogContent>
                     <form className={classes.container}>
                         <FormControl className={classes.formControl}>
@@ -229,43 +230,28 @@ export default function Course() {
                                 validators={[VALIDATOR_MINLENGTH(6)]}
                                 onInput={inputHandler}
                                 errorText='At least 4 characters for the name'></InputComponent>
-                            <InputLabel shrink id='select-label'>
+                            <InputLabel htmlFor='select-label'>
                                 Software
                             </InputLabel>
                             <Select
-                                native
-                                labelId='select-label'
-                                value={software}
-                                onChange={handleChange}
-                                className={classes.select}
-                                input={<Input id='demo-dialog-native' />}>
-                                <option aria-label='None' value='' />
-                                <option value={"Dokmee Capture"}>
-                                    Dokmee Capture
-                                </option>
-                                <option value={"Dokmee Ecm"}>Dokmee Ecm</option>
-                                <option value={"Dokmee Form"}>
-                                    Dokmee Form
-                                </option>
-                            </Select>
-                            <InputLabel id='demo-simple-select-helper-label'>
-                                Age
-                            </InputLabel>
-                            <Select
-                                labelId='demo-simple-select-helper-label'
-                                id='demo-simple-select-helper'
-                                value={age}
-                                onChange={handleChange}>
-                                <MenuItem value=''>
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                            <FormHelperText>
-                                Some important helper text
-                            </FormHelperText>
+                                        native
+                                        value={companyName}
+                                        onChange={handleCompanyNameChange}
+                                        inputProps={{
+                                            name: "companyName",
+                                            id: "companyName",
+                                        }}
+                                        className='first-input auth-input'>
+                                        {loadedSoft.map(soft => {
+                                            return (
+                                                <option
+                                                    value={soft.name}
+                                                    >
+                                                    {soft.name}
+                                                </option>
+                                            );
+                                        })}
+                                    </Select>
                         </FormControl>
                     </form>
                 </DialogContent>
@@ -280,7 +266,7 @@ export default function Course() {
                         Create
                     </ButtonComponent>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
         </>
     );
 }

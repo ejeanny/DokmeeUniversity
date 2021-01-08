@@ -176,14 +176,37 @@ a {
     background-color: #fff;
 }
 
-.video-react .video-react-slider {
-    background-color: #9f737a !important;
-    background-color: rgba(159, 115, 119, 0.5);
+.video-react .video-react-control-bar {
+    height: 5rem;
+    background-color: transparent !important;
+}
+.video-react .video-react-control {
+    outline: none;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 4em;
 }
 
-.video-react .video-react-control-bar {
-    background-color: var(--mainDark);
-    background-color: rgba(0, 23, 44, 0.7);
+.video-react .video-react-menu-button-inline,
+.video-react-playback-rate,
+.video-react .video-react-time-divider,
+.video-react .video-react-time-control,
+.video-react-volume-menu-button-vertical,
+.video-react-control-bar button {
+    margin-top: 10px;
+    font-size: 20px;
+}
+.video-react-button {
+    margin-top: 10px !important;
+}
+.video-react
+    .video-react-menu-button-popup
+    .video-react-menu
+    .video-react-menu-content {
+    background-color: transparent !important;
 }
 .video-react .video-react-menu-button-popup .video-react-menu {
     background-color: rgba(0, 23, 44, 0.7);
@@ -200,17 +223,23 @@ a {
     background-color: rgba(0, 23, 44, 0.7);
 }
 .video-react:hover .video-react-big-play-button,
+.video-react-volume-level,
 .video-react .video-react-big-play-button:focus {
     border-color: var(--mainGrey);
-    background-color: var(--mainRed);
-    background-color: rgba(207, 51, 57, 0.7);
+    background-color: var(--mainRed) !important;
+    background-color: rgba(0, 23, 44, 0.7);
+    /* background-color: rgba(207, 51, 57, 0.7); */
 }
-.video-react .video-react-play-progress {
+.video-react .video-react-play-progress,
+.video-react-volume-bar {
     background-color: var(--mainDark);
-    color: var(--mainDarkRed);
-    background-color: rgba(207, 51, 57, 0.7);
-}
+    /* color: var(--mainDarkRed); */
 
+    background-color: var(--mainRed);
+}
+.video-react .video-react-progress-control {
+    font-size: 20px;
+}
 @media screen and (max-width: 959px) {
     .react-player {
         margin: 0;
